@@ -8,16 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  private uri:String;
-  private frase:String;
+  private uri:string;
+  public frase:string;
 
   constructor(private http: HttpClient) { 
-    uri = 'http://factorb/';
-  	frase = this.http.get(uri);
-  	console.log(frase);
+    this.uri = 'http://factorb/';
+  	this.http.get(this.uri).subscribe(exp => {
+          this.frase = <string>exp;
+	}, err => console.log('Fallo en la peticion del sistema'));
+  	console.log(this.frase);
   }
 
   ngOnInit() {
+    console.log(this.frase);
   }
 
 }
