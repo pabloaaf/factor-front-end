@@ -1,2 +1,29 @@
 <p>login works!</p>
 <p>{{frase}}</p>
+
+<form >
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" #email>
+  </div>
+  <div class="form-group">
+    <label for="pass">Pasword</label>
+    <input type="number" class="form-control" id="pass" #pass>
+  </div>
+  <button type="button" (click)="addUser(email.value, pass.value)" class="btn btn-primary">Add user</button>
+</form>
+
+<table class="table" *ngIf="users.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let users of users">
+         <td> {{users.email}} </td>
+         <td>  {{users.pass}} </td>
+       </tr>
+    </tbody>
+</table>

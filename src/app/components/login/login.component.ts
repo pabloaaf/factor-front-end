@@ -9,18 +9,32 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   private uri:string;
-  public frase:string;
+  public frase = 'one';
+  users: any[] = [];
 
   constructor(private http: HttpClient) { 
-    this.uri = 'http://factorb/';
-  	this.http.get(this.uri).subscribe(exp => {
-          this.frase = <string>exp;
-	}, err => console.log('Fallo en la peticion del sistema'));
-  	console.log(this.frase);
+    this.uri = 'http://localhost:3000';
   }
 
   ngOnInit() {
     console.log(this.frase);
+    this.getAllUsers();
   }
 
+  // Add one user to the API
+  addUser(email, pass) {
+    this.http.post(`${this.uri}/users`, {email, pass})
+      .subscribe((data: any) => {
+        this.getAllUsers();
+      }, (error: any) => {console.log(error);});
+  }
+
+  // Get all users from the API
+  getAllUsers() {
+    this.http.get(`${this.uri}/users`)
+      .subscribe((users : any )=> {
+        console.log(users);
+        this.users = users;
+      }, (error: any) => {console.log(error);});
+  }
 }
