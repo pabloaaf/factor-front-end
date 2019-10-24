@@ -1,29 +1,41 @@
-<p>login works!</p>
-<p>{{frase}}</p>
-
-<form >
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" class="form-control" id="email" #email>
-  </div>
-  <div class="form-group">
-    <label for="pass">Pasword</label>
-    <input type="number" class="form-control" id="pass" #pass>
-  </div>
-  <button type="button" (click)="addUser(email.value, pass.value)" class="btn btn-primary">Add user</button>
-</form>
-
-<table class="table" *ngIf="users.length > 0">
-    <thead>
-      <tr>
-        <th scope="col">Email</th>
-        <th scope="col">Password</th>
-      </tr>
-    </thead>
-    <tbody>
-       <tr *ngFor="let users of users">
-         <td> {{users.email}} </td>
-         <td>  {{users.pass}} </td>
-       </tr>
-    </tbody>
-</table>
+<mat-grid-list cols="3" rowHeight="3:1" class="back" [ngStyle]="{ 'background-image': 'url(./assets/campus-night-1500.jpg)' }">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+	<div class="login">
+		<img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk.svg">
+		<form>
+		  <div class="form-group">
+		    <label for="email">Username:</label><br>
+		    <input type="text" class="form-control" id="email" #email>
+		  </div>
+		  <div class="form-group">
+		    <label for="pass">Password:</label><br>
+            <input class="required" type="password" class="form-control" id="pass" autocomplete="off" name="password" #pass>
+          </div>
+          <mat-grid-list cols="2" rowHeight="2:1">
+			  <mat-grid-tile>
+			  	<button type="button" (click)="addUser(email.value, pass.value)" class="btn btn-primary">Add user</button>
+			  </mat-grid-tile>
+			  <mat-grid-tile>
+			  	<button type="button" (click)="forgotPasswordForm(email.value)" class="btn btn-secondary">Forgot Password?</button>
+			  </mat-grid-tile>
+		  </mat-grid-list>
+		</form>
+		<table class="table" *ngIf="users.length > 0">
+		    <thead>
+		      <tr>
+		        <th scope="col">Email</th>
+		        <th scope="col">Password</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		       <tr *ngFor="let users of users">
+		         <td> {{users.email}} </td>
+		         <td>  {{users.pass}} </td>
+		       </tr>
+		    </tbody>
+		</table>
+	</div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
