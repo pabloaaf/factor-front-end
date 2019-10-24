@@ -6,7 +6,7 @@ import { AppComponent } from './globals/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
+import {MatGridListModule} from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { MatSliderModule } from '@angular/material/slider';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

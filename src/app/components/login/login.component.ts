@@ -37,4 +37,12 @@ export class LoginComponent implements OnInit {
         this.users = users;
       }, (error: any) => {console.log(error);});
   }
+
+  // Ask the API to change the password
+  forgotPasswordForm(email) {
+    this.http.post(`${this.uri}/users`, {email})
+      .subscribe((data: any) => {
+        this.getAllUsers();
+      }, (error: any) => {console.log(error);});
+  }
 }
