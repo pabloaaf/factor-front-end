@@ -6,12 +6,16 @@ import { AppComponent } from './globals/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatGridListModule} from '@angular/material'
+import {MatGridListModule} from '@angular/material';
+import { ProfIndexComponent } from './components/professor/index/index.component';
+import { StdIndexComponent } from './components/student/index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ProfIndexComponent,
+    StdIndexComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
-<mat-grid-list cols="3" class="back" [ngStyle]="{ 'background-image': 'url(./assets/campus-night-1500.jpg)' }">
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile>
+<div class="back maxmargin" [ngStyle]="{ 'background-image': 'url(./assets/campus-night-1500.jpg)' }">
+	<div class="row maxmargin">
+  <div class="col-lg-4 col-md-4 col-sm-12"></div>
+  <div class="col-lg-4 col-md-4 col-sm-12">
+  	<div class="margin"></div>
 	<div class="login">
 		<img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk.svg">
 		<form>
@@ -12,14 +14,14 @@
 		    <label for="pass">Password:</label><br>
             <input class="required" type="password" class="form-control" id="pass" autocomplete="off" name="password" #pass>
           </div>
-          <mat-grid-list cols="2">
-			  <mat-grid-tile>
-			  	<button type="button" (click)="addUser(email.value, pass.value)" class="btn btn-primary">Add user</button>
-			  </mat-grid-tile>
-			  <mat-grid-tile>
+          <div class="row">
+  <div class="col-lg-6">
+			  	<button type="button" (click)="verifyUser(email.value, pass.value)" class="btn btn-primary">Add user</button>
+			  </div>
+			  <div class="col-lg-6">
 			  	<button type="button" (click)="forgotPasswordForm(email.value)" class="btn btn-secondary">Forgot Password?</button>
-			  </mat-grid-tile>
-		  </mat-grid-list>
+			  </div>
+		  </div>
 		</form>
 		<table class="table" *ngIf="users.length > 0">
 		    <thead>
@@ -36,6 +38,8 @@
 		    </tbody>
 		</table>
 	</div>
-  </mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-</mat-grid-list>
+	<div class="margin"></div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12"></div>
+</div>
+</div>

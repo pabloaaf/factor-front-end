@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
-
+import { ProfIndexComponent } from '../components/professor/index/index.component';
+import { StdIndexComponent } from '../components/student/index/index.component';
 
 const routes: Routes = [
-	{path: '', component: LoginComponent}
+	{path: '', component: LoginComponent},
+	{path: 'professor', redirectTo: 'prof/index', pathMatch: 'full'},
+	{path: 'prof/index', component: ProfIndexComponent},
+	{path: 'student', redirectTo: 'std/index', pathMatch: 'full'},
+	{path: 'std/index', component: StdIndexComponent},
 ];
 
 @NgModule({
