@@ -9,13 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material';
 import { ProfIndexComponent } from './components/professor/index/index.component';
 import { StdIndexComponent } from './components/student/index/index.component';
+import { LoginCallbackComponent } from './components/login/loginCallback/login-callback/login-callback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ProfIndexComponent,
-    StdIndexComponent
+    StdIndexComponent,
+    LoginCallbackComponent
   ],
   imports: [
     BrowserModule,

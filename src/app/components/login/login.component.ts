@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
-
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   private uri:string;
-  public frase = 'one';
+  private oauth:string;
   users: any[] = [];
 
   constructor(private http: HttpClient, private router: Router) { 
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.frase);
     this.getAllUsers();
   }
 
@@ -32,8 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   verifyUser(email, pass) {
-    this.router.navigate(['professor']);
-    /*this.http.post(`${this.uri}/login`, {email, pass})
+    //this.router.navigate(['professor']);
+    this.http.post(`${this.uri}/login`, {email, pass})
       .subscribe((data: any) => {
         if (Number(data) >= 127) {
           this.router.navigate(['professor']);
@@ -43,8 +42,19 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['student']);
         } else if (Number(data) >= 1) {
           this.router.navigate(['student']);
+        } else if (Number(data) <= 0) {
+          this.getOauth().subscribe((url:string)=> {
+            console.log(url);
+            this.oauth = url;
+            this.router.navigate([this.oauth]);
+          }, (error: any) => {console.log(error);});
         }
-      }, (error: any) => {console.log(error);});*/
+      }, (error: any) => {console.log(error);});
+  }
+
+  // Get oauth url from the API
+  getOauth(): Observable<any> {
+    return this.http.get(`${this.uri}/oauth`);
   }
 
   // Get all users from the API
