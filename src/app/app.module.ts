@@ -10,6 +10,7 @@ import {MatGridListModule} from '@angular/material';
 import { ProfIndexComponent } from './components/professor/index/index.component';
 import { StdIndexComponent } from './components/student/index/index.component';
 import { LoginCallbackComponent } from './components/login/loginCallback/login-callback/login-callback.component';
+import { AuthRedirectGuard } from './globals/auth-redirect.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { LoginCallbackComponent } from './components/login/loginCallback/login-c
     BrowserAnimationsModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [AuthRedirectGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

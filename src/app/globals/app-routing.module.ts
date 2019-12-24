@@ -4,6 +4,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { ProfIndexComponent } from '../components/professor/index/index.component';
 import { StdIndexComponent } from '../components/student/index/index.component';
 import { LoginCallbackComponent } from '../components/login/loginCallback/login-callback/login-callback.component';
+import { AuthRedirectGuard } from './auth-redirect.guard';
 
 const routes: Routes = [
 	{path: '', component: LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
 	{path: 'prof/index', component: ProfIndexComponent},
 	{path: 'student', redirectTo: 'std/index', pathMatch: 'full'},
 	{path: 'std/index', component: StdIndexComponent},
+	{path: 'googleauth', canActivate: [AuthRedirectGuard], component: StdIndexComponent}
 ];
 
 @NgModule({

@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   users: any[] = [];
 
   constructor(private http: HttpClient, private router: Router) { 
-    this.uri = 'http://localhost:3000';
+    this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
   ngOnInit() {
@@ -32,22 +32,35 @@ export class LoginComponent implements OnInit {
 
   verifyUser(email, pass) {
     //this.router.navigate(['professor']);
+    if (pass == ""){
+      email = "dd"
+      pass = "fdfs"
+    }
     this.http.post(`${this.uri}/login`, {email, pass})
       .subscribe((data: any) => {
-        if (Number(data) >= 127) {
+        console.log(data);
+
+        var auth = Number(data.authlvl);
+        if (auth >= 127) {
           this.router.navigate(['professor']);
-        } else if (Number(data) >= 63) {
+        } else if (auth >= 63) {
           this.router.navigate(['professor']);
-        } else if (Number(data) >= 31) {
+        } else if (auth >= 31) {
           this.router.navigate(['student']);
-        } else if (Number(data) >= 1) {
+        } else if (auth >= 1) {
           this.router.navigate(['student']);
-        } else if (Number(data) <= 0) {
+        } else if (auth >= 0) {
+          //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           this.getOauth().subscribe((url:string)=> {
             console.log(url);
-            this.oauth = url;
-            this.router.navigate([this.oauth]);
+            //this.oauth = url;
+            //window.open(url, '_self'); //  
+            window.location.replace(url);
+            //this.router.navigate(['googleauth'],{queryParams:{nurl:url}});
+            //window.location.href = url; // toDo change to external router guard
           }, (error: any) => {console.log(error);});
+        } else if (auth <= -1) {
+          // show error contraseña mal introducida
         }
       }, (error: any) => {console.log(error);});
   }
