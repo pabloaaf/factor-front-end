@@ -32,14 +32,10 @@ export class LoginComponent implements OnInit {
 
   verifyUser(email, pass) {
     //this.router.navigate(['professor']);
-    if (pass == ""){
-      email = "dd"
-      pass = "fdfs"
-    }
-    this.http.post(`${this.uri}/login`, {email, pass})
-      .subscribe((data: any) => {
+    email = "palvarezfernandez@hawk.iit.edu";
+    pass = "pablo";
+    this.http.post(`${this.uri}/login`, {email, pass}).subscribe((data: any) => {
         console.log(data);
-
         var auth = Number(data.authlvl);
         if (auth >= 127) {
           this.router.navigate(['professor']);
@@ -53,9 +49,11 @@ export class LoginComponent implements OnInit {
           //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           this.getOauth().subscribe((url:string)=> {
             console.log(url);
+            sessionStorage.setItem(email,'email');
+            sessionStorage.setItem(pass,'pass');
+            window.location.replace(url);
             //this.oauth = url;
             //window.open(url, '_self'); //  
-            window.location.replace(url);
             //this.router.navigate(['googleauth'],{queryParams:{nurl:url}});
             //window.location.href = url; // toDo change to external router guard
           }, (error: any) => {console.log(error);});
