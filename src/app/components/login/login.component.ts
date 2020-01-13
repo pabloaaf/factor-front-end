@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           this.getOauth().subscribe((url:string)=> {
             console.log(url);
-            sessionStorage.setItem(email,'email');
+            //sessionStorage.setItem(email,'email');
             sessionStorage.setItem(pass,'pass');
             window.location.replace(url);
             //this.oauth = url;

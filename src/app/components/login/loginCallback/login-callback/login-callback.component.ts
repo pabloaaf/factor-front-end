@@ -15,20 +15,20 @@ export class LoginCallbackComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { 
     this.uri = 'http://192.168.1.125:3000'; //localhost
-  	this.email = sessionStorage.getItem('email');
-  	this.pass = sessionStorage.getItem('pass');
-    console.log(this.email);
-    /*this.http.post(`${this.uri}/callback`, {this.route.snapshot.params.code})
-      .subscribe((data: any) => {
-        this.getAllUsers();
-      }, (error: any) => {console.log(error);});*/
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       console.log(params);
     });
-
+    this.pass = sessionStorage.getItem('pass');
+    //sessionStorage.removeItem('email');
+    sessionStorage.removeItem('pass');
+    console.log(this.pass);
+    this.http.post(`${this.uri}:3000/callback`, { code:this.route.snapshot.params.code})
+    .subscribe((data: any) => {
+        console.log(data);
+    }, (error: any) => {console.log(error);});
   }
 
 }
