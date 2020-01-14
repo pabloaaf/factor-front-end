@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login-callback.component.css']
 })
 export class LoginCallbackComponent implements OnInit {
-  private email:string;
+  //private email:string;
   private pass:string;
 
   private uri:string;
@@ -18,17 +18,15 @@ export class LoginCallbackComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      console.log(params);
+    this.route.queryParamMap.subscribe((p: any) => {
+      console.log(p.params);
+      this.http.post(`${this.uri}/callback`, { code: p.params.code }).subscribe((data: any) => {
+        console.log(data);
+      }, (error: any) => {console.log(error);});
     });
     this.pass = sessionStorage.getItem('pass');
     //sessionStorage.removeItem('email');
     sessionStorage.removeItem('pass');
     console.log(this.pass);
-    this.http.post(`${this.uri}:3000/callback`, { code:this.route.snapshot.params.code})
-    .subscribe((data: any) => {
-        console.log(data);
-    }, (error: any) => {console.log(error);});
   }
-
 }

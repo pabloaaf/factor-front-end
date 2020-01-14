@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           this.getOauth().subscribe((url:string)=> {
             console.log(url);
             //sessionStorage.setItem(email,'email');
-            sessionStorage.setItem(pass,'pass');
+            sessionStorage.setItem('pass',pass);
             window.location.replace(url);
             //this.oauth = url;
             //window.open(url, '_self'); //  
