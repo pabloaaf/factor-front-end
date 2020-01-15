@@ -11,6 +11,9 @@ import { StdIndexComponent } from './components/student/index/index.component';
 import { LoginCallbackComponent } from './components/login/loginCallback/login-callback/login-callback.component';
 import { AuthRedirectGuard } from './globals/auth-redirect.guard';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddCoursesComponent } from './components/mockData/add-courses/add-courses.component';
+import { ShowVideoComponent } from './components/show-video/show-video.component';
+import { EditVideoComponent } from './components/edit-video/edit-video.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     ProfIndexComponent,
     StdIndexComponent,
-    LoginCallbackComponent
+    LoginCallbackComponent,
+    AddCoursesComponent,
+    ShowVideoComponent,
+    EditVideoComponent
   ],
   imports: [
     BrowserModule,
