@@ -6,10 +6,11 @@ import { AppComponent } from './globals/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatGridListModule} from '@angular/material';
 import { ProfIndexComponent } from './components/professor/index/index.component';
 import { StdIndexComponent } from './components/student/index/index.component';
 import { LoginCallbackComponent } from './components/login/loginCallback/login-callback/login-callback.component';
+import { AuthRedirectGuard } from './globals/auth-redirect.guard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import { LoginCallbackComponent } from './components/login/loginCallback/login-c
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthRedirectGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

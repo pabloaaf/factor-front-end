@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,41 +14,58 @@ export class LoginComponent implements OnInit {
   private uri:string;
   private oauth:string;
   users: any[] = [];
+  loginForm: FormGroup;
+  submitted = false;
 
-  constructor(private http: HttpClient, private router: Router) { 
-    this.uri = 'http://localhost:3000';
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
+    this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
   ngOnInit() {
     this.getAllUsers();
+      this.loginForm = this.formBuilder.group({
+          email: ['', [Validators.required, Validators.email]], //pattern('')
+          password: ['', [Validators.required, Validators.minLength(5)]]
+      });
   }
 
-  // Add one user to the API
-  addUser(email, pass) {
-    this.http.post(`${this.uri}/users`, {email, pass})
-      .subscribe((data: any) => {
-        this.getAllUsers();
-      }, (error: any) => {console.log(error);});
-  }
+  get f() { return this.loginForm.controls; }
 
-  verifyUser(email, pass) {
-    //this.router.navigate(['professor']);
-    this.http.post(`${this.uri}/login`, {email, pass})
-      .subscribe((data: any) => {
-        if (Number(data) >= 127) {
+  verifyUser() {
+      this.submitted = true;
+
+      // stop the process here if form is invalid
+      if (this.loginForm.invalid) {
+          return;
+      }
+
+      console.log('SUCCESS!!');
+    //email = "palvarezfernandez@hawk.iit.edu";
+    //pass = "pablo";
+    this.http.post(`${this.uri}/login`, {email:this.loginForm.get('email').value, pass:this.loginForm.get('password').value}).subscribe((data: any) => {
+        //console.log(data);
+        var auth = Number(data.authlvl);
+        if(auth > 0) {
+          sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
+        }
+        if (auth >= 127) {
           this.router.navigate(['professor']);
-        } else if (Number(data) >= 63) {
+        } else if (auth >= 63) {
           this.router.navigate(['professor']);
-        } else if (Number(data) >= 31) {
+        } else if (auth >= 31) {
           this.router.navigate(['student']);
-        } else if (Number(data) >= 1) {
+        } else if (auth >= 1) {
           this.router.navigate(['student']);
-        } else if (Number(data) <= 0) {
+        } else if (auth >= 0) {
           this.getOauth().subscribe((url:string)=> {
-            console.log(url);
-            this.oauth = url;
-            this.router.navigate([this.oauth]);
+            //console.log(url);
+            sessionStorage.setItem('pass',this.loginForm.get('password').value);
+            window.location.replace(url);
+            //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           }, (error: any) => {console.log(error);});
+        } else if (auth <= -1) {
+          // show error contraseña mal introducida
+          console.log('review pass show alert');
         }
       }, (error: any) => {console.log(error);});
   }
@@ -67,11 +85,16 @@ export class LoginComponent implements OnInit {
   }
 
   // Ask the API to change the password
-  forgotPasswordForm(email) {
+  forgotPasswordForm() {
+    // create new page
     this.router.navigate(['student']);
     /*this.http.post(`${this.uri}/users`, {email})
       .subscribe((data: any) => {
         this.getAllUsers();
       }, (error: any) => {console.log(error);});*/
+  }
+
+  logout() {
+    sessionStorage.removeItem('token');
   }
 }
