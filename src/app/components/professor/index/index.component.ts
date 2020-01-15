@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfIndexComponent implements OnInit {
   private userInfo:any;
+  private courses:any;
   constructor() { }
 
   ngOnInit() {
@@ -14,4 +15,7 @@ export class ProfIndexComponent implements OnInit {
     this.userInfo = JSON.parse(atob(token.split('.')[1]));
   }
 
+  public saveVideo(c,f){
+
+  }
 }
