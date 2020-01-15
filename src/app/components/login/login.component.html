@@ -16,27 +16,13 @@
           </div>
           <div class="row">
   <div class="col-lg-6">
-			  	<button type="button" (click)="verifyUser(email.value, pass.value)" class="btn btn-primary">Add user</button>
+			  	<button type="button" (click)="verifyUser(email.value, pass.value)" class="btn btn-primary">Login</button>
 			  </div>
 			  <div class="col-lg-6">
 			  	<button type="button" (click)="forgotPasswordForm(email.value)" class="btn btn-secondary">Forgot Password?</button>
 			  </div>
 		  </div>
 		</form>
-		<!--<table class="table" *ngIf="users.length > 0">
-		    <thead>
-		      <tr>
-		        <th scope="col">Email</th>
-		        <th scope="col">Password</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		       <tr *ngFor="let users of users">
-		         <td> {{users.email}} </td>
-		         <td>  {{users.pass}} </td>
-		       </tr>
-		    </tbody>
-		</table>-->
 	</div>
 	<div class="margin"></div>
   </div>

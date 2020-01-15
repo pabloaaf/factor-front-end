@@ -31,12 +31,14 @@ export class LoginComponent implements OnInit {
   }
 
   verifyUser(email, pass) {
-    //this.router.navigate(['professor']);
-    email = "palvarezfernandez@hawk.iit.edu";
-    pass = "pablo";
+    //email = "palvarezfernandez@hawk.iit.edu";
+    //pass = "pablo";
     this.http.post(`${this.uri}/login`, {email, pass}).subscribe((data: any) => {
-        console.log(data);
+        //console.log(data);
         var auth = Number(data.authlvl);
+        if(auth > 0) {
+          sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
+        }
         if (auth >= 127) {
           this.router.navigate(['professor']);
         } else if (auth >= 63) {
@@ -46,19 +48,15 @@ export class LoginComponent implements OnInit {
         } else if (auth >= 1) {
           this.router.navigate(['student']);
         } else if (auth >= 0) {
-          //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           this.getOauth().subscribe((url:string)=> {
-            console.log(url);
-            //sessionStorage.setItem(email,'email');
+            //console.log(url);
             sessionStorage.setItem('pass',pass);
             window.location.replace(url);
-            //this.oauth = url;
-            //window.open(url, '_self'); //  
-            //this.router.navigate(['googleauth'],{queryParams:{nurl:url}});
-            //window.location.href = url; // toDo change to external router guard
+            //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           }, (error: any) => {console.log(error);});
         } else if (auth <= -1) {
           // show error contraseña mal introducida
+          console.log('review pass show alert');
         }
       }, (error: any) => {console.log(error);});
   }
@@ -79,10 +77,15 @@ export class LoginComponent implements OnInit {
 
   // Ask the API to change the password
   forgotPasswordForm(email) {
+    // create new page
     this.router.navigate(['student']);
     /*this.http.post(`${this.uri}/users`, {email})
       .subscribe((data: any) => {
         this.getAllUsers();
       }, (error: any) => {console.log(error);});*/
+  }
+
+  logout() {
+    sessionStorage.removeItem('token');
   }
 }
