@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.css']
 })
 export class ProfIndexComponent implements OnInit {
-
+  private userInfo:any;
   constructor() { }
 
   ngOnInit() {
+    let token = sessionStorage.getItem('token');
+    this.userInfo = JSON.parse(atob(token.split('.')[1]));
   }
 
 }

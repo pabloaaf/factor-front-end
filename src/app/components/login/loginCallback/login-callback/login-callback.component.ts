@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginCallbackComponent implements OnInit {
 
   private uri:string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { 
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
@@ -23,7 +23,7 @@ export class LoginCallbackComponent implements OnInit {
     // console.log(this.pass);
     this.route.queryParamMap.subscribe((p: any) => {
       // console.log(p.params);
-      this.http.post(`${this.uri}/callback`, { code: p.params.code, pass: this.pass }).subscribe((token: any) => {
+      this.http.post(`${this.uri}/callback`, { code: p.params.code, pass: this.pass }).subscribe((data: any) => {
         sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
         
         let auth = Number(data.authlvl);
