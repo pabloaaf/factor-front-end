@@ -10,6 +10,7 @@ import { ProfIndexComponent } from './components/professor/index/index.component
 import { StdIndexComponent } from './components/student/index/index.component';
 import { LoginCallbackComponent } from './components/login/loginCallback/login-callback/login-callback.component';
 import { AuthRedirectGuard } from './globals/auth-redirect.guard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthRedirectGuard } from './globals/auth-redirect.guard';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthRedirectGuard],
   bootstrap: [AppComponent]

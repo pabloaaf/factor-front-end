@@ -4,22 +4,26 @@
 		<div class="margin"></div>
 		<div class="login">
 			<img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk.svg">
-			<form>
+			<form [formGroup]="loginForm" (ngSubmit)="verifyUser()">
 				<div class="form-group">
 					<label for="email">Username:</label><br>
-					<input type="text" class="form-control" id="email" #email>
+					<input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+					<div *ngIf="submitted && f.email.errors" class="text-danger">
+						<div *ngIf="f.email.errors.required">Email is required</div>
+						<div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="pass">Password:</label><br>
-            		<input class="required" type="password" class="form-control" id="pass" autocomplete="off" name="password" #pass>
+					<label for="password">Password:</label><br>
+					<input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"  />
+					<div *ngIf="submitted && f.password.errors" class="text-danger">
+						<div *ngIf="f.password.errors.required">Password is required</div>
+						<div *ngIf="f.password.errors.minlength">Password must be at least 5 characters</div>
+					</div>
           		</div>
           		<div class="row">
-  					<div class="col-lg-6">
-			  			<button type="button" (click)="verifyUser(email.value, pass.value)" class="btn btn-primary">Login</button>
-			  		</div>
-			  		<div class="col-lg-6">
-			  		<button type="button" (click)="forgotPasswordForm(email.value)" class="btn btn-secondary">Forgot Password?</button>
-			  		</div>
+					<button type="submit" class="btn btn-primary mr-auto">Login</button>
+					<button type="button" (click)="forgotPasswordForm()" class="btn btn-secondary">Forgot Password?</button>
 				</div>
 			</form>
 		</div>

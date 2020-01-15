@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,27 +14,35 @@ export class LoginComponent implements OnInit {
   private uri:string;
   private oauth:string;
   users: any[] = [];
+  loginForm: FormGroup;
+  submitted = false;
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
     this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
   ngOnInit() {
     this.getAllUsers();
+      this.loginForm = this.formBuilder.group({
+          email: ['', [Validators.required, Validators.email]], //pattern('')
+          password: ['', [Validators.required, Validators.minLength(5)]]
+      });
   }
 
-  // Add one user to the API
-  addUser(email, pass) {
-    this.http.post(`${this.uri}/users`, {email, pass})
-      .subscribe((data: any) => {
-        this.getAllUsers();
-      }, (error: any) => {console.log(error);});
-  }
+  get f() { return this.loginForm.controls; }
 
-  verifyUser(email, pass) {
+  verifyUser() {
+      this.submitted = true;
+
+      // stop the process here if form is invalid
+      if (this.loginForm.invalid) {
+          return;
+      }
+
+      console.log('SUCCESS!!');
     //email = "palvarezfernandez@hawk.iit.edu";
     //pass = "pablo";
-    this.http.post(`${this.uri}/login`, {email, pass}).subscribe((data: any) => {
+    this.http.post(`${this.uri}/login`, {email:this.loginForm.get('email').value, pass:this.loginForm.get('password').value}).subscribe((data: any) => {
         //console.log(data);
         var auth = Number(data.authlvl);
         if(auth > 0) {
@@ -50,7 +59,7 @@ export class LoginComponent implements OnInit {
         } else if (auth >= 0) {
           this.getOauth().subscribe((url:string)=> {
             //console.log(url);
-            sessionStorage.setItem('pass',pass);
+            sessionStorage.setItem('pass',this.loginForm.get('password').value);
             window.location.replace(url);
             //this.router.navigate(['AuthRedirectGuard'],{ queryParams: { nurl:url } });
           }, (error: any) => {console.log(error);});
@@ -76,7 +85,7 @@ export class LoginComponent implements OnInit {
   }
 
   // Ask the API to change the password
-  forgotPasswordForm(email) {
+  forgotPasswordForm() {
     // create new page
     this.router.navigate(['student']);
     /*this.http.post(`${this.uri}/users`, {email})
