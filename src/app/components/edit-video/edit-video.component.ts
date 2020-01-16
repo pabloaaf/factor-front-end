@@ -12,7 +12,7 @@ export class EditVideoComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.videoID = this.route.snapshot.paramMap.get('id');
+    this.videoID = Number(this.route.snapshot.paramMap.get('id'));
     console.log(this.videoID);
     console.log(this.route.snapshot);
   }

@@ -11,9 +11,14 @@ export class ShowVideoComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.videoID = this.route.snapshot.paramMap.get('id');
+    this.videoID = Number(this.route.snapshot.paramMap.get('id'));
     console.log(this.videoID);
-    console.log(this.route.snapshot);
+    if(this.route.snapshot.url[0] == 'prof'){
+      console.log('professor');
+    } else {
+      console.log('student');
+    }
+
   }
 
 }

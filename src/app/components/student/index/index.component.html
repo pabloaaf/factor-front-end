@@ -12,7 +12,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="dropdownnav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img alt="user picture" src="{{userInfo.picture}}" width="50" height="50"></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownnav" style="margin-left: -100px;">
-                    <a class="dropdown-item" routerLink="/">Logout (door)</a>
+                    <a class="dropdown-item" [routerLink]="">Logout (door)</a>
                 </div>
             </li>
         </ul>
@@ -34,7 +34,7 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" routerLink="['/std/show', 1]" class="btn btn-sm btn-outline-secondary">View</button><!--{{video.id}}-->
+                                <button type="button" [routerLink]="['/std/show', 1]" class="btn btn-sm btn-outline-secondary">View</button><!--{{video.id}}-->
                             </div>
                             <small class="text-muted">9 mins</small>
                         </div>
@@ -48,7 +48,7 @@
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" routerLink="['/std/show', 1]" class="btn btn-sm btn-outline-secondary">View</button><!--{{video.id}}-->
+                                <button type="button" [routerLink]="['/std/show', 2]" class="btn btn-sm btn-outline-secondary">View</button><!--{{video.id}}-->
                             </div>
                             <small class="text-muted">9 mins</small>
                         </div>
