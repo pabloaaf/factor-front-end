@@ -26,24 +26,39 @@
         <h1 class="jumbotron-heading">Upload Video</h1>
         <p class="lead text-muted">Welcome professor {{userInfo.family_name}}, {{userInfo.given_name}}</p>
         <p class="lead text-muted">Please, upload your video following the next steps.</p>
-        <!--<form>-->
+        <form [formGroup]="uploadVideoForm" (ngSubmit)="saveVideo()"><!--<form>-->
             <div class="form-group">
-                <label for="sel1">1. Select Course:</label>
-                <select class="form-control" id="sel1" #course>
+                <label for="sel1">1. Select Course:</label><br>
+                <select class="form-control" id="sel1" formControlName="course" [ngClass]="{ 'is-invalid': submitted && f.course.errors }">
                     <option *ngFor="let c of courses" value="{{c.name}}">{{c.name}}</option>
                 </select>
-            </div>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputVideo" #file>
-                <label class="custom-file-label" for="inputVideo" data-browse="2. Upload video">Choose File...</label>
-            </div>
-            <span></span>
-            <div class="row">
-                <div class="col-6">
-                    <button type="button" (click)="saveVideo(course.value, file.files)" class="btn btn-primary">Send</button>
+                <div *ngIf="submitted && f.course.errors" class="text-danger">
+                    <div *ngIf="f.course.errors.required">Course is required</div>
                 </div>
             </div>
-        <!--</form>-->
+            <div class="form-group">
+                <label>2. Select Video:</label>
+                <div class="custom-file">
+                    <input id="vid" type='file' accept="video/*" formControlName="video" class="form-control custom-file-input" (change)="onSelectFile($event)" [ngClass]="{ 'is-invalid': submitted && f.video.errors }" />
+                    <label class="custom-file-label" for="vid">Choose file</label>
+                </div>
+                <video [src]="url" *ngIf="url" height="200" controls></video> <br>
+                <!--<canvas id="canvas"></canvas> <br/><br/> --- ToDo -->
+                <div *ngIf="submitted && f.video.errors" class="text-danger">
+                    <div *ngIf="f.video.errors.required">Video is required</div>
+                </div>
+            </div>
+            <script>
+                // Add the following code if you want the name of the file appear on select
+                $(".custom-file-input").on("change", function() {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                });
+            </script>
+            <div class="row">
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
     </div>
 </section>
 
