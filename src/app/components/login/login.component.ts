@@ -10,10 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   private uri:string;
-  private oauth:string;
-  users: any[] = [];
   loginForm: FormGroup;
   submitted = false;
 
@@ -22,11 +19,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllUsers();
-      this.loginForm = this.formBuilder.group({
-          email: ['', [Validators.required, Validators.email]], //pattern('')
-          password: ['', [Validators.required, Validators.minLength(5)]]
-      });
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]], //pattern('')
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
   }
 
   get f() { return this.loginForm.controls; }
@@ -44,7 +40,7 @@ export class LoginComponent implements OnInit {
     //pass = "pablo";
     this.http.post(`${this.uri}/login`, {email:this.loginForm.get('email').value, pass:this.loginForm.get('password').value}).subscribe((data: any) => {
         //console.log(data);
-        var auth = Number(data.authlvl);
+        let auth = Number(data.authlvl);
         if(auth > 0) {
           sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
         }
@@ -73,15 +69,6 @@ export class LoginComponent implements OnInit {
   // Get oauth url from the API
   getOauth(): Observable<any> {
     return this.http.get(`${this.uri}/oauth`);
-  }
-
-  // Get all users from the API
-  getAllUsers() {
-    this.http.get(`${this.uri}/users`)
-      .subscribe((users : any )=> {
-        console.log(users);
-        this.users = users;
-      }, (error: any) => {console.log(error);});
   }
 
   // Ask the API to change the password
