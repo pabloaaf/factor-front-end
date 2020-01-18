@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="/professor/#">
-        <img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk.svg" width="250" height="50">
+        <img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk_white.svg" width="250" height="50">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="sel1">1. Select Course:</label><br>
                 <select class="form-control" id="sel1" formControlName="course" [ngClass]="{ 'is-invalid': submitted && f.course.errors }">
-                    <option *ngFor="let c of courses" value="{{c.name}}">{{c.name}}</option>
+                    <option *ngFor="let c of coursesInfo" value="{{c._id}}">{{c.number}}: {{c.name}}</option>
                 </select>
                 <div *ngIf="submitted && f.course.errors" class="text-danger">
                     <div *ngIf="f.course.errors.required">Course is required</div>

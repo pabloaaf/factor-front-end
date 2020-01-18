@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-index',
@@ -9,12 +10,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class ProfIndexComponent implements OnInit {
   private userInfo:any;
+  private coursesInfo:any;
+  private uri:string;
   uploadVideoForm: FormGroup;
   submitted = false;
   private url:SafeResourceUrl;
 
 
-  constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer) { }
+  constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer, private http: HttpClient) {
+    this.uri = 'http://192.168.1.125:3000'; //localhost
+  }
 
   ngOnInit() {
     let token = sessionStorage.getItem('token');
@@ -23,6 +28,7 @@ export class ProfIndexComponent implements OnInit {
       course: ['', Validators.required],
       video: ['', Validators.required]
     });
+    this.getUserInfo();
   }
 
   get f() { return this.uploadVideoForm.controls; }
@@ -37,6 +43,10 @@ export class ProfIndexComponent implements OnInit {
 
     console.log('SUCCESS!!');
     console.log(this.uploadVideoForm.get('course').value);
+    this.http.post(`${this.uri}/video`,{course:this.uploadVideoForm.get('course').value, data:this.uploadVideoForm.get('data').value}).subscribe((data: any) => {
+      this.coursesInfo = data;
+      console.log(this.coursesInfo);
+    }, (error: any) => {console.log(error);});
   }
 
   public onSelectFile(event) {
@@ -48,5 +58,20 @@ export class ProfIndexComponent implements OnInit {
         this.url = this.sanitizer.bypassSecurityTrustResourceUrl(<string>(<FileReader>event.target).result);
       }
     }
+  }
+
+  getUserInfo(){
+    this.http.get(`${this.uri}/users/` + this.userInfo._id).subscribe((data: any) => {
+      this.userInfo = data;
+      console.log(this.userInfo);
+      this.getCoursesInfo();
+    }, (error: any) => {console.log(error);});
+  }
+
+  getCoursesInfo(){
+    this.http.post(`${this.uri}/courses/id`,{id:this.userInfo.courses}).subscribe((data: any) => {
+      this.coursesInfo = data;
+      console.log(this.coursesInfo);
+    }, (error: any) => {console.log(error);});
   }
 }

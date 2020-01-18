@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="/student/#">
-        <img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk.svg" width="250" height="50">
+        <img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk_white.svg" width="250" height="50">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,20 +23,17 @@
 </nav>
 
 <h1>Welcome {{userInfo.family_name}}, {{userInfo.given_name}}</h1>
-<h1>List of courses to unfold and see files related and edit</h1>
+<h3>Your courses:</h3>
 
 <div class="accordion" id="accordion">
     <div class="card" *ngFor="let course of coursesInfo">
         <div class="card-header" id="h{{course._id}}">
-            <h5 class="mb-0">
-                <button class="btn btn-link" type="button" attr.data-toggle="collapse" attr.data-target="#c{{course._id}}" attr.aria-expanded="false" attr.aria-controls="c{{course._id}}">
-                    {{course.number}}: {{course.name}}<br>
-                    Professor: {{course.professorInfo.family_name}}, {{course.professorInfo.given_name}}
-                </button>
-            </h5>
+            <a class="card-link" data-toggle="collapse" href="#c{{course._id}}">
+                <h5>{{course.number}}: {{course.name}}<br>
+                    Professor: {{course.professorInfo.family_name}}, {{course.professorInfo.given_name}}</h5>
+            </a>
         </div>
-
-        <div id="c{{course._id}}" class="collapse show" attr.aria-labelledby="h{{course._id}}" attr.data-parent="#accordion">
+        <div id="c{{course._id}}" class="collapse" data-parent="#accordion">
             <div class="card-body">
                 <div class="album py-5 bg-light">
                     <div class="container">
@@ -80,7 +77,7 @@
 <p>Search box filter by keywords on videos?</p>
 <p>Set separate files for navbar and footer</p>
 
-<div class="container text-muted">
+<footer class="container text-muted footer">
     <div class="row">
         <div class="col-sm-8 col-md-7 py-4 mr-auto">
             <h4 class="">About</h4>
@@ -88,4 +85,4 @@
         </div>
         <p class="mt-auto"><a href="/student/#">Back to top</a></p>
     </div>
-</div>
+</footer>
