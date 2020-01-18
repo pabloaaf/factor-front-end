@@ -1,0 +1,14 @@
+<footer class="container text-muted footer">
+    <div class="row">
+        <div class="col-sm-8 col-md-7 py-4 mr-auto">
+            <h4 class="">About</h4>
+            <p *ngIf="userType" class="">This application will allow professors to distribute clear notes to their students.</p>
+            <p *ngIf="userType" class="">It also allows professors to create their own books from their material.</p>
+            <p *ngIf="!userType" class="">This application will allow students to increase their production, providing them the capacity to search keywords through their class videos</p>
+        </div>
+        <p class="mt-auto">
+            <a *ngIf="userType" href="/professor/#">Back to top</a>
+            <a *ngIf="!userType" href="/student/#">Back to top</a>
+        </p>
+    </div>
+</footer>

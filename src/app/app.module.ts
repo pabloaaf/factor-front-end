@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddCoursesComponent } from './components/mockData/add-courses/add-courses.component';
 import { ShowVideoComponent } from './components/show-video/show-video.component';
 import { EditVideoComponent } from './components/edit-video/edit-video.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { EditVideoComponent } from './components/edit-video/edit-video.component
     LoginCallbackComponent,
     AddCoursesComponent,
     ShowVideoComponent,
-    EditVideoComponent
+    EditVideoComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
