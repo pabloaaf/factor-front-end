@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { pipe } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-index',
@@ -9,15 +10,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./index.component.css']
 })
 export class ProfIndexComponent implements OnInit {
-  private userInfo:any;
-  private coursesInfo:any;
+  userInfo:any;
+  coursesInfo:any;
   private uri:string;
   uploadVideoForm: FormGroup;
   submitted = false;
-  private url:SafeResourceUrl;
+  progress = 0;
+  file: File | null = null;
+  success = false;
 
+  @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
+    const file = event && event.item(0);
+    this.file = file;
+  }
 
-  constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer, private http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private host: ElementRef<HTMLInputElement>) {
     this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
@@ -26,38 +33,79 @@ export class ProfIndexComponent implements OnInit {
     this.userInfo = JSON.parse(atob(token.split('.')[1]));
     this.uploadVideoForm = this.formBuilder.group({
       course: ['', Validators.required],
-      video: ['', Validators.required]
+      video: ['', Validators.required, this.requiredFileType('mp4')]
     });
     this.getUserInfo();
   }
 
-  get f() { return this.uploadVideoForm.controls; }
-
-  public saveVideo(){
-    this.submitted = true;
-
-    // stop the process here if form is invalid
-    if (this.uploadVideoForm.invalid) {
-      return;
-    }
-
-    console.log('SUCCESS!!');
-    console.log(this.uploadVideoForm.get('course').value);
-    this.http.post(`${this.uri}/video`,{course:this.uploadVideoForm.get('course').value, data:this.uploadVideoForm.get('data').value}).subscribe((data: any) => {
-      this.coursesInfo = data;
-      console.log(this.coursesInfo);
-    }, (error: any) => {console.log(error);});
-  }
-
-  public onSelectFile(event) {
-    const file = event.target.files && event.target.files[0];
-    if (file) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (event) => {
-        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(<string>(<FileReader>event.target).result);
+  public requiredFileType(type:string) {
+    return function (control: FormControl) {
+      let file = control.value;
+      if (file) {
+        let extension = file.name.split('.')[1].toLowerCase();
+        if (type.toLowerCase() === extension.toLowerCase()) {
+          return {
+            requiredFileType: true
+          };
+        }
+        return null;
       }
     }
+  }
+
+  get f() { return this.uploadVideoForm.controls; }
+
+  public saveVideo() {
+      this.submitted = true;
+
+      // stop the process here if form is invalid
+      if (this.uploadVideoForm.invalid) {
+        return;
+      }
+      console.log(this.f.video.errors);
+      console.log('SUCCESS!!');
+      console.log(this.uploadVideoForm.get('course').value);
+      this.http.post(`${this.uri}/videos`, this.toFormData(this.uploadVideoForm.value),
+          {reportProgress: true, observe: 'events'}
+      ).pipe(
+          this.uploadProgress(progress => (this.progress = progress)),
+          this.toResponseBody()
+      ).subscribe((data: any) => {
+          this.progress = 0;
+          this.uploadVideoForm.reset();
+          this.success = true;
+          this.coursesInfo = data;
+          console.log(this.coursesInfo);
+          // do something with the response
+      }, (error: any) => {
+          console.log(error);
+      });
+  }
+
+  public toFormData<T>( formValue: T ) {
+    const formData = new FormData();
+
+    for ( const key of Object.keys(formValue) ) {
+      const value = formValue[key];
+      formData.append(key, value);
+    }
+
+    return formData;
+  }
+
+  public toResponseBody<T>() {
+      return pipe(
+          filter((event: HttpEvent<T>) => event.type === HttpEventType.Response),
+          map((res: HttpResponse<T>) => res.body)
+      );
+  }
+
+  public uploadProgress<T>( cb: ( progress: number ) => void ) {
+    return tap(( event: HttpEvent<T> ) => {
+      if ( event.type === HttpEventType.UploadProgress ) {
+        cb(Math.round((100 * event.loaded) / event.total));
+      }
+    });
   }
 
   getUserInfo(){

@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./index.component.css']
 })
 export class StdIndexComponent implements OnInit {
-  private userInfo:any;
-  private coursesInfo:any;
+  userInfo:any;
+  coursesInfo:any;
   private uri:string;
 
   constructor(private http: HttpClient) {
