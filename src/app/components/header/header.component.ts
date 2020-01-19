@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private userType:boolean = false;
+  public userType:boolean = false;
   @Input() picture: String;
   constructor(private route: ActivatedRoute) { }
 

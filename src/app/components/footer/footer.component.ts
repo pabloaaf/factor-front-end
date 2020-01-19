@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  private userType:boolean = false;
+  public userType:boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
