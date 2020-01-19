@@ -33,7 +33,7 @@ export class ProfIndexComponent implements OnInit {
     this.userInfo = JSON.parse(atob(token.split('.')[1]));
     this.uploadVideoForm = this.formBuilder.group({
       course: ['', Validators.required],
-      video: ['', Validators.required, this.requiredFileType('mp4')]
+      video: ['', [Validators.required, this.requiredFileType('mp4')]]
     });
     this.getUserInfo();
   }
@@ -42,8 +42,8 @@ export class ProfIndexComponent implements OnInit {
     return function (control: FormControl) {
       let file = control.value;
       if (file) {
-        let extension = file.name.split('.')[1].toLowerCase();
-        if (type.toLowerCase() === extension.toLowerCase()) {
+          let extension = file.split('.')[1].toLowerCase();
+        if (type.toLowerCase() !== extension.toLowerCase()) {
           return {
             requiredFileType: true
           };
@@ -62,7 +62,7 @@ export class ProfIndexComponent implements OnInit {
       if (this.uploadVideoForm.invalid) {
         return;
       }
-      console.log(this.f.video.errors);
+      console.log(this.file);
       console.log('SUCCESS!!');
       console.log(this.uploadVideoForm.get('course').value);
       this.http.post(`${this.uri}/videos`, this.toFormData(this.uploadVideoForm.value),
@@ -89,7 +89,7 @@ export class ProfIndexComponent implements OnInit {
       const value = formValue[key];
       formData.append(key, value);
     }
-
+    formData.append('video', this.file, this.file.name);
     return formData;
   }
 
