@@ -43,7 +43,14 @@ export class AddCoursesComponent implements OnInit {
     this.http.post(`${this.uri}/courses`, {name:cname,number:Number(cnumber),professor:Number(profID)}).subscribe((data: any) => {
       let message = data.message;
       console.log(message);
-      this.addCourseToUser(Number(profID), data.token._id);
+
+      //form validation stoped the next action
+      //this.addCourseToUser(Number(profID), data.token._id);
+      this.http.post(`${this.uri}/users`, {user:Number(profID), course:data.token._id}).subscribe((data: any) => {
+        let message = data.message;
+        console.log(message);
+        this.getAllUsers();
+      }, (error: any) => {console.log(error);});
       this.getAllCourses();
     }, (error: any) => {console.log(error);});
   }
