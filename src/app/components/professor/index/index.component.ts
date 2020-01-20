@@ -17,7 +17,6 @@ export class ProfIndexComponent implements OnInit {
   submitted = false;
   progress = 0;
   file: File | null = null;
-  success = false;
 
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     const file = event && event.item(0);
@@ -62,9 +61,9 @@ export class ProfIndexComponent implements OnInit {
       if (this.uploadVideoForm.invalid) {
         return;
       }
-      console.log(this.file);
-      console.log('SUCCESS!!');
-      console.log(this.uploadVideoForm.get('course').value);
+      //console.log(this.file);
+      //console.log('SUCCESS!!');
+      //console.log(this.uploadVideoForm.get('course').value);
       this.http.post(`${this.uri}/videos`, this.toFormData(this.uploadVideoForm.value),
           {reportProgress: true, observe: 'events'}
       ).pipe(
@@ -72,8 +71,7 @@ export class ProfIndexComponent implements OnInit {
           this.toResponseBody()
       ).subscribe((data: any) => {
           this.progress = 0;
-          this.uploadVideoForm.reset();
-          this.success = true;
+          //this.uploadVideoForm.reset();
           this.coursesInfo = data;
           console.log(this.coursesInfo);
           // do something with the response

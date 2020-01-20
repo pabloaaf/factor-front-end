@@ -30,74 +30,7 @@
                     <div class="progress-bar" [style.width.%]="progress">{{progress}}%</div>
                 </div>
             </div>
-                <!--<div ng2FileDrop [ngClass]="{'file-over': hasDropOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well drop-zone">
-                    Video drop zone
-                </div>
-                <h5>Upload queue</h5>
-                <p>Queue length: {{ uploader?.queue?.length }}</p>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th width="50%">Name</th><th>Size</th><th>Progress</th><th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of uploader.queue">
-                            <td><strong>{{ item?.file?.name }}</strong></td>
-                            <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                            <td *ngIf="uploader.options.isHTML5">
-                                <div class="progress" style="margin-bottom: 0;">
-                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <span *ngIf="item.isSuccess"><img alt="up" src="./assets/upload.svg" width="15" height="15"></span>
-                                <span *ngIf="item.isCancel"><img alt="up" src="./assets/ban.svg" width="15" height="15"></span>
-                                <span *ngIf="item.isError"><img alt="up" src="./assets/trash.svg" width="15" height="15"></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div>
-                    <h5>Queue progress:</h5>
-                    <div class="progress" style="">
-                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-success btn-s"
-                                (click)="uploader.uploadAll() && saveVideo()" [disabled]="!uploader.getNotUploadedItems().length && f.course.errors && uploader.progress == 100">
-                            <img alt="up" src="./assets/upload.svg" width="15" height="15"> Upload all
-                        </button>
-                        <button type="button" class="btn btn-warning btn-s"
-                                (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading && f.course.errors && uploader.progress == 100">
-                            <img alt="up" src="./assets/ban.svg" width="15" height="15"> Cancel all
-                        </button>
-                        <button type="button" class="btn btn-danger btn-s"
-                                (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length && f.course.errors && uploader.progress == 100">
-                            <img alt="up" src="./assets/trash.svg" width="15" height="15"> Remove all
-                        </button>
-                    </div>
-                </div>
-            </div>
-                <! --
-                <div class="custom-file">
-                    <input id="vid" type='file' accept="video/*" formControlName="video" class="form-control custom-file-input" (change)="onSelectFile($event)" [ngClass]="{ 'is-invalid': submitted && f.video.errors }" />
-                    <label class="custom-file-label" for="vid">Choose file</label>
-                </div>
-                <video [src]="url" *ngIf="url" height="200" controls></video> <br>
-                <! --<canvas id="canvas"></canvas> <br/><br/> --- ToDo -- >
-                <div *ngIf="submitted && f.video.errors" class="text-danger">
-                    <div *ngIf="f.video.errors.required">Video is required</div>
-                </div>
-            </div>
-            <script>
-                // Add the following code if you want the name of the file appear on select
-                $(".custom-file-input").on("change", function() {
-                    var fileName = $(this).val().split("\\").pop();
-                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                });
-            </script>-->
+                <!-- ToDo set MB video <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>-->
             <div class="row">
                 <button type="submit" class="btn btn-primary"><img alt="up" src="./assets/upload.svg" width="15" height="15">Upload</button>
             </div>
