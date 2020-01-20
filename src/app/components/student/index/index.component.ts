@@ -10,6 +10,7 @@ export class StdIndexComponent implements OnInit {
   userInfo:any;
   coursesInfo:any;
   professorInfo:any;
+  videosInfo:any;
   private uri:string;
 
   constructor(private http: HttpClient) {
@@ -27,6 +28,7 @@ export class StdIndexComponent implements OnInit {
       this.userInfo = data;
       console.log(this.userInfo);
       this.getCoursesInfo();
+      this.getVideosInfo();
     }, (error: any) => {console.log(error);});
   }
 
@@ -46,6 +48,13 @@ export class StdIndexComponent implements OnInit {
     this.http.post(`${this.uri}/users/id`,{id:PIDs}).subscribe((data: any) => {
       this.professorInfo = data;
       console.log(this.professorInfo);
+    }, (error: any) => {console.log(error);});
+  }
+
+  getVideosInfo(){
+    this.http.post(`${this.uri}/videos/course`,{course:this.userInfo.courses}).subscribe((data: any) => {
+      this.videosInfo = data;
+      console.log(this.coursesInfo);
     }, (error: any) => {console.log(error);});
   }
 }
