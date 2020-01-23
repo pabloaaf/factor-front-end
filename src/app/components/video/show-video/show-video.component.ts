@@ -20,6 +20,8 @@ export class ShowVideoComponent implements OnInit {
   ngOnInit() {
     this.videoID = this.route.snapshot.paramMap.get('id');
     console.log(this.videoID);
+    let token = sessionStorage.getItem('token');
+    this.userInfo = JSON.parse(atob(token.split('.')[1]));
     this.getUserInfo();
 
     /*if(this.route.snapshot.url[0].path == 'prof'){
