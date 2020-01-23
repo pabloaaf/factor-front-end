@@ -1,2 +1,43 @@
-<p>show-video works!</p>
-<p>{{videoID}}</p>
+<app-header [picture]="userInfo.picture"></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-md-7 py-4 mr-auto">
+            <figure class="mbr-figure align-center container">
+                <div class="video-block">
+                    <video width="80%" controls>
+                        <source src="{{videoInfo.url}}" type="video/mp4">
+                    </video>
+                </div>
+            </figure>
+            <h1>{{videoInfo.name}}</h1>
+            <!-- Description or keywords for translation?? -->
+            <hr>
+            <h3>Transcripts</h3>
+            <p>Show transcript complete</p>
+            <table>
+                <tr>
+                    <th>Time</th><th>Word</th><th *ngIf="userInfo.authlvl > 32">Edit</th>
+                </tr>
+                <tr>
+                    <td>00:00:00</td>
+                    <td>Show transcript table clickable for set video time</td>
+                    <td *ngIf="userInfo.authlvl > 32"><button>Edit Transcripts</button></td>
+                </tr>
+            </table>
+
+            <!-- Add comments for students to send the first caption edition recommendations ?? -->
+            <!-- It would also provide a space for students to ask questions to the professor, about anything on the video. Plus, they can give an exact timestamp for accuracy ?? -->
+            <!-- Save PDF ?? -->
+        </div>
+    </div>
+    <table>
+            <tr>
+                <th><h3>Keywords</h3></th>
+            </tr>
+            <tr>
+                <td>docker</td>
+                <td>linux</td>
+            </tr>
+    </table>
+</div>
+<app-footer></app-footer>

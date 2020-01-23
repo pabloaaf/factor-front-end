@@ -15,7 +15,7 @@
                     <div class="container">
                         <div class="row">
                             <ng-container *ngFor="let video of videosInfo">
-                                <div class="col-md-4" *ngIf="videosInfo.course == course._id">
+                                <div class="col-md-4" *ngIf="video.course == course._id">
                                     <div class="card mb-4 shadow-sm">
                                         <img class="card-img-top" alt="Thumbnail [100%x225]" src="{{uri}}/{{video.thumbnail}}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
                                         <div class="card-body">

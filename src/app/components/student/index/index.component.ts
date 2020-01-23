@@ -54,7 +54,7 @@ export class StdIndexComponent implements OnInit {
   getVideosInfo(){
     this.http.post(`${this.uri}/videos/course`,{course:this.userInfo.courses}).subscribe((data: any) => {
       this.videosInfo = data;
-      console.log(this.coursesInfo);
+      console.log(this.videosInfo);
     }, (error: any) => {console.log(error);});
   }
 }
