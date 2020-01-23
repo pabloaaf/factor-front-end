@@ -16,6 +16,7 @@ import { ShowVideoComponent } from './components/video/show-video/show-video.com
 import { EditVideoComponent } from './components/video/edit-video/edit-video.component';
 import { HeaderComponent } from './components/navbar/header/header.component';
 import { FooterComponent } from './components/navbar/footer/footer.component';
+import { GlobalsComponent } from './globals/globals.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FooterComponent } from './components/navbar/footer/footer.component';
     ShowVideoComponent,
     EditVideoComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    GlobalsComponent
   ],
   imports: [
     BrowserModule,
