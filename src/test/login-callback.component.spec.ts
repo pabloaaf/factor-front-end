@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginCallbackComponent } from './login-callback.component';
+import { LoginCallbackComponent } from '../app/components/login/login-callback/login-callback.component';
 
 describe('LoginCallbackComponent', () => {
   let component: LoginCallbackComponent;

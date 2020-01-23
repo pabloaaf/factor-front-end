@@ -5,9 +5,9 @@ import { pipe } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-professor',
+  templateUrl: './professor.component.html',
+  styleUrls: ['./professor.component.css']
 })
 export class ProfIndexComponent implements OnInit {
   userInfo:any;
