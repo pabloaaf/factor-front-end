@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:i18n": "for lang in en es fr; do ng build -c production-$lang --base-href /$lang/;done",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
