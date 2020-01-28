@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HTTPService } from '../../../services/http.service';
 
 @Component({
   selector: 'app-student',
@@ -11,9 +12,9 @@ export class StdIndexComponent implements OnInit {
   coursesInfo:any;
   professorInfo:any;
   videosInfo:any;
-  private uri:string;
+  uri:string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _httpService: HTTPService) { //private _httpService: HTTPService
     this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
@@ -21,6 +22,7 @@ export class StdIndexComponent implements OnInit {
     let token = sessionStorage.getItem('token');
     this.userInfo = JSON.parse(atob(token.split('.')[1]));
     this.getUserInfo();
+    //     this.systems = this._httpService.getSystems(); // servicio http devuelve Observable de todos los sistemas
   }
 
   getUserInfo(){
