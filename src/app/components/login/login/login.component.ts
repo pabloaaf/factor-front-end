@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GlobalsComponent } from '../../../globals/globals.component'
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,13 @@ export class LoginComponent implements OnInit {
   private uri:string;
   loginForm: FormGroup;
   submitted = false;
+  languages = [];
 
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
-    this.uri = 'http://192.168.1.125:3000'; //localhost
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, @Inject(LOCALE_ID) public localeId: string) {
+      this.uri = 'http://192.168.1.125:3000';
+      for (let i = 0; i < GlobalsComponent.languages.length; i++) {
+          this.languages[i] = GlobalsComponent.languages[i];
+      }
   }
 
   ngOnInit() {
@@ -83,5 +88,10 @@ export class LoginComponent implements OnInit {
 
   logout() {
     sessionStorage.removeItem('token');
+  }
+
+  langChange(lang) {
+      console.log(this.router.url);
+     window.location.replace(this.router.url + lang);
   }
 }

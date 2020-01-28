@@ -9,6 +9,11 @@ export class GlobalsComponent {
   static version = 'v1/';
   static api = 'https://192.168.1.125/';
   static staticsURL = 'assets/';
+  static languages = [
+    { code: 'en', label: 'English', img: 'english'},
+    { code: 'es', label: 'Español', img: 'spanish'},
+    { code: 'fr', label: 'Français', img: 'french'}
+  ];
 }
 
 export class User {
