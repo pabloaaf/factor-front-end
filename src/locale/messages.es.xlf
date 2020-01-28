@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="67fc3fe0566f8700b84a908c35497759db78addc" datatype="html">
+        <source>Username:</source>
+        <target>Usuario:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b2fd2a81342b5821f47ce0e6f2383b1403fd659" datatype="html">
+        <source>Email is required</source>
+        <target>Se requiere correo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d17296d557e0315b665d9a45ba1be7445e9a9cd0" datatype="html">
+        <source>Email must be a valid email address</source>
+        <target>Introduzca un correo válido</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4434eb250f44b5effd90253c0c9f2bf1e69ec13f" datatype="html">
+        <source>Password:</source>
+        <target>Contraseña:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1e20f8b8a4706526c9024cc2f39d568345d100dc" datatype="html">
+        <source>Password is required</source>
+        <target>Se requiere contraseña</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9bca2a6444e14e71afa5e9f4fb64cf1f48ffd9cb" datatype="html">
+        <source>Password must be at least 5 characters</source>
+        <target>La contraseña debe de tener al menos 5 caracteres</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6255a8674662e55d6ccc3ad46cc1dd0dd6394d75" datatype="html">
+        <source>Forgot Password?</source>
+        <target>¿Olvidó su contraseña?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
