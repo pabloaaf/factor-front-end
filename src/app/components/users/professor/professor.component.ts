@@ -12,6 +12,7 @@ import { filter, map, tap } from 'rxjs/operators';
 export class ProfIndexComponent implements OnInit {
   userInfo:any;
   coursesInfo:any;
+  videoInfo:any;
   private uri:string;
   uploadVideoForm: FormGroup;
   submitted = false;
@@ -72,8 +73,8 @@ export class ProfIndexComponent implements OnInit {
       ).subscribe((data: any) => {
           this.progress = 0;
           //this.uploadVideoForm.reset();
-          this.coursesInfo = data;
-          console.log(this.coursesInfo);
+          this.videoInfo = data;
+          console.log(this.videoInfo);
           // do something with the response
       }, (error: any) => {
           console.log(error);
@@ -115,7 +116,7 @@ export class ProfIndexComponent implements OnInit {
   }
 
   getCoursesInfo(){
-    this.http.post(`${this.uri}/courses/id`,{id:this.userInfo.courses}).subscribe((data: any) => {
+    this.http.post(`${this.uri}/courses/id`,{id:this.userInfo.coursesID}).subscribe((data: any) => {
       this.coursesInfo = data;
       console.log(this.coursesInfo);
     }, (error: any) => {console.log(error);});

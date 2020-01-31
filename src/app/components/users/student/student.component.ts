@@ -35,12 +35,12 @@ export class StdIndexComponent implements OnInit {
   }
 
   getCoursesInfo(){
-    this.http.post(`${this.uri}/courses/id`,{id:this.userInfo.courses}).subscribe((data: any) => {
+    this.http.post(`${this.uri}/courses/id`,{id:this.userInfo.coursesID}).subscribe((data: any) => {
       this.coursesInfo = data;
       console.log(this.coursesInfo);
       let professorsID = [];
       for (let i = 0; i < this.coursesInfo.length; i++) {
-        professorsID[i] = Number(this.coursesInfo[i].professor);
+        professorsID[i] = Number(this.coursesInfo[i].professorID);
       }
       this.getProfessorsInfo(professorsID);
     }, (error: any) => {console.log(error);});
@@ -54,7 +54,7 @@ export class StdIndexComponent implements OnInit {
   }
 
   getVideosInfo(){
-    this.http.post(`${this.uri}/videos/course`,{course:this.userInfo.courses}).subscribe((data: any) => {
+    this.http.post(`${this.uri}/videos/course`,{course:this.userInfo.coursesID}).subscribe((data: any) => {
       this.videosInfo = data;
       console.log(this.videosInfo);
     }, (error: any) => {console.log(error);});
