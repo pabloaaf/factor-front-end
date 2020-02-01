@@ -44,6 +44,13 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/login/login/login.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6255a8674662e55d6ccc3ad46cc1dd0dd6394d75" datatype="html">
         <source>Forgot Password?</source>
         <context-group purpose="location">
@@ -58,8 +65,8 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="31015d74c2145a0200b664f45e7180876fd44dc7" datatype="html">
-        <source>Welcome professor <x id="INTERPOLATION" equiv-text="{{userInfo.family_name}}"/>, <x id="INTERPOLATION_1" equiv-text="{{userInfo.given_name}}"/></source>
+      <trans-unit id="14da4db10ade7b8ee63ff5443b860124d9a78a26" datatype="html">
+        <source>Welcome professor</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
           <context context-type="linenumber">5</context>
@@ -121,8 +128,8 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="61bd5204b30ce13da768205399a7520a40c1690d" datatype="html">
-        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img/&gt;"/>Upload</source>
+      <trans-unit id="4b3972c3e9485218508a95f7a4ce7758e3f09ced" datatype="html">
+        <source>Upload</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
           <context context-type="linenumber">41</context>
@@ -135,6 +142,13 @@
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="65cc4ab3b4c438e07c89be2b677d08369fb62da2" datatype="html">
+        <source>Welcome</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="51ea53a4f09172c85b0cffe353d75554ddf3d56b" datatype="html">
         <source>Your courses:</source>
         <context-group purpose="location">
@@ -142,15 +156,26 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="071ee966202fec958836c9c527e917d6e1a205b1" datatype="html">
-        <source>Name: <x id="INTERPOLATION" equiv-text="{{video.name}}"/></source>
+      <trans-unit id="34f47699424c3050fd7d40794737a9d56ecc6227" datatype="html">
+        <source>Professor:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/mockData/add-courses/add-courses.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="616e206cb4f25bd5885fc35925365e43cf5fb929" datatype="html">
+        <source>Name:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="fea8e4a23d3230c0327fa5f1c83cf7ddbfa7fbf9" datatype="html">
-        <source>Class number: <x id="INTERPOLATION" equiv-text="{{video.class}}"/></source>
+      <trans-unit id="26d9fe296059fcb228f209b8068d8e2dcff291f9" datatype="html">
+        <source>Class number:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
           <context context-type="linenumber">23</context>
@@ -196,13 +221,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/mockData/add-courses/add-courses.component.html</context>
           <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="34f47699424c3050fd7d40794737a9d56ecc6227" datatype="html">
-        <source>Professor:</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/mockData/add-courses/add-courses.component.html</context>
-          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
@@ -314,46 +332,18 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="efc2bb415b99bb3d88a9a6a7d48b13f70c4d181b" datatype="html">
-        <source>show video</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="42c6b2d9cfc6590f314d61929624c9a435887ffb" datatype="html">
-        <source>delete button and return to prof</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9dc162ec534150301efebf079b2973f0852901ff" datatype="html">
-        <source>change name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f90ab8dbb847b9db9a068f20cc3213b0845ef820" datatype="html">
-        <source>change transcripts</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c712236b06c63c63a89f34e6bedff1f369cccc1e" datatype="html">
-        <source>save and redirect to view of the video</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="2ca61c0c1c69972abbaa563b1b4707e5216c7ea2" datatype="html">
         <source>Logout (door)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navbar/header/header.component.html</context>
           <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+        <source>About</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/footer/footer.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dba1ab7e3dbc5925fae7b0ad9dd06d4931e10a4a" datatype="html">

@@ -1,4 +1,4 @@
-<app-header [picture]="userInfo.picture"></app-header>
+<app-header [auth]="userInfo.authlvl" [picture]="userInfo.picture"></app-header>
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-md-7 py-4 mr-auto">
@@ -42,4 +42,4 @@
         </table>
     </div>
 </div>
-<app-footer></app-footer>
+<app-footer [auth]="userInfo.authlvl"></app-footer>
