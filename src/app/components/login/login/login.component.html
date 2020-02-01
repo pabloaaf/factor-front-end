@@ -21,7 +21,7 @@
 					</div>
           		</div>
           		<div class="row">
-					<button type="submit" class="btn btn-primary mr-auto" style="margin-left: 15px;">Login</button>
+					<button type="submit" class="btn btn-primary mr-auto" style="margin-left: 15px;" i18n>Login</button>
 					<button type="button" (click)="forgotPasswordForm()" class="btn btn-secondary" style="margin-right: 15px;" i18n>Forgot Password?</button>
 				</div>
 			</form>
@@ -31,7 +31,7 @@
 	<div class="bottomright">
 		<ng-template ngFor let-lang [ngForOf]="languages">
 			<span *ngIf="lang.code !== localeId"><a href="/{{lang.code}}/"><img alt="up" src="./assets/{{lang.img}}.svg" width="15" height="15"></a> </span>
-			<span *ngIf="lang.code === localeId"><img alt="up" src="./assets/{{lang.img}}.svg" width="15" height="15"> </span>
+			<span *ngIf="lang.code === localeId"><img style="filter: grayscale(100%);" alt="up" src="./assets/{{lang.img}}.svg" width="15" height="15"> </span>
 		</ng-template>
 	</div>
 </div>
