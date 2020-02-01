@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {Video} from "../../../globals/globals.component";
 
 @Component({
   selector: 'app-show-video',
@@ -14,7 +15,7 @@ export class ShowVideoComponent implements OnInit {
   videoInfo: any;
   constructor(private http: HttpClient, private route: ActivatedRoute) {
     this.uri = 'http://192.168.1.125:3000'; //localhost
-
+  this.videoInfo = new Video();
   } //private route: ActivatedRoute
 
   ngOnInit() {

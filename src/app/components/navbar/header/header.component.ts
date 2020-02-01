@@ -10,7 +10,9 @@ export class HeaderComponent implements OnInit {
   @Input() picture: String;
   @Input() auth: number;
 
-  constructor() { }
+  constructor() {
+    this.picture = "";
+  }
 
   ngOnInit() {
     if(this.auth >= 63){

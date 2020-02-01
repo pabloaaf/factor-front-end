@@ -1,8 +1,9 @@
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { pipe } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { HTTPService } from '../../../services/http.service';
+import {Course, GlobalsComponent, User, Video} from "../../../globals/globals.component";
+import {FileService} from "../../../services/file.service";
 
 @Component({
   selector: 'app-professor',
@@ -13,44 +14,38 @@ export class ProfIndexComponent implements OnInit {
   userInfo:any;
   coursesInfo:any;
   videoInfo:any;
-  private uri:string;
   uploadVideoForm: FormGroup;
   submitted = false;
   progress = 0;
   file: File | null = null;
+  videosInfo:Video[];
+  uri:string;
 
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     const file = event && event.item(0);
     this.file = file;
   }
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private host: ElementRef<HTMLInputElement>) {
-    this.uri = 'http://192.168.1.125:3000'; //localhost
+  constructor(private formBuilder: FormBuilder, private _httpService: HTTPService, private _fileService: FileService, private host: ElementRef<HTMLInputElement>) {
+      this.uri = GlobalsComponent.api+GlobalsComponent.version; //localhost
+
+      let token = JSON.parse(atob(sessionStorage.getItem('token').split('.')[1]));
+      this._httpService.getUserAct(token._id).subscribe(us => { // servicio http devuelve la info del usuario
+          this.userInfo = <User>us;
+          this._httpService.getCoursesInfo(this.userInfo.coursesID).subscribe(courses => {
+            this.coursesInfo = <Course[]>courses;
+          });
+          this._httpService.getVideosInfo(this.userInfo.coursesID).subscribe(videos => {
+            this.videosInfo = <Video[]>videos;
+          });
+      }, err => console.log(err));
   }
 
   ngOnInit() {
-    let token = sessionStorage.getItem('token');
-    this.userInfo = JSON.parse(atob(token.split('.')[1]));
     this.uploadVideoForm = this.formBuilder.group({
       course: ['', Validators.required],
-      video: ['', [Validators.required, this.requiredFileType('mp4')]]
+      video: ['', [Validators.required, this._fileService.requiredFileType('mp4')]]
     });
-    this.getUserInfo();
-  }
-
-  public requiredFileType(type:string) {
-    return function (control: FormControl) {
-      let file = control.value;
-      if (file) {
-          let extension = file.split('.')[1].toLowerCase();
-        if (type.toLowerCase() !== extension.toLowerCase()) {
-          return {
-            requiredFileType: true
-          };
-        }
-        return null;
-      }
-    }
   }
 
   get f() { return this.uploadVideoForm.controls; }
@@ -62,14 +57,10 @@ export class ProfIndexComponent implements OnInit {
       if (this.uploadVideoForm.invalid) {
         return;
       }
-      //console.log(this.file);
-      //console.log('SUCCESS!!');
-      //console.log(this.uploadVideoForm.get('course').value);
-      this.http.post(`${this.uri}/videos`, this.toFormData(this.uploadVideoForm.value),
-          {reportProgress: true, observe: 'events'}
-      ).pipe(
-          this.uploadProgress(progress => (this.progress = progress)),
-          this.toResponseBody()
+
+      this._httpService.uploadFile(this.uploadVideoForm.value, this.file).pipe(
+          this._fileService.uploadProgress(progress => (this.progress = progress)),
+          this._fileService.toResponseBody()
       ).subscribe((data: any) => {
           this.progress = 0;
           //this.uploadVideoForm.reset();
@@ -79,46 +70,5 @@ export class ProfIndexComponent implements OnInit {
       }, (error: any) => {
           console.log(error);
       });
-  }
-
-  public toFormData<T>( formValue: T ) {
-    const formData = new FormData();
-
-    for ( const key of Object.keys(formValue) ) {
-      const value = formValue[key];
-      formData.append(key, value);
-    }
-    formData.append('video', this.file, this.file.name);
-    return formData;
-  }
-
-  public toResponseBody<T>() {
-      return pipe(
-          filter((event: HttpEvent<T>) => event.type === HttpEventType.Response),
-          map((res: HttpResponse<T>) => res.body)
-      );
-  }
-
-  public uploadProgress<T>( cb: ( progress: number ) => void ) {
-    return tap(( event: HttpEvent<T> ) => {
-      if ( event.type === HttpEventType.UploadProgress ) {
-        cb(Math.round((100 * event.loaded) / event.total));
-      }
-    });
-  }
-
-  getUserInfo(){
-    this.http.get(`${this.uri}/users/` + this.userInfo._id).subscribe((data: any) => {
-      this.userInfo = data;
-      console.log(this.userInfo);
-      this.getCoursesInfo();
-    }, (error: any) => {console.log(error);});
-  }
-
-  getCoursesInfo(){
-    this.http.post(`${this.uri}/courses/id`,{id:this.userInfo.coursesID}).subscribe((data: any) => {
-      this.coursesInfo = data;
-      console.log(this.coursesInfo);
-    }, (error: any) => {console.log(error);});
   }
 }

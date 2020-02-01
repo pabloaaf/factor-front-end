@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-//import { HttpClient } from '@angular/common/http';
 import { HTTPService } from '../../../services/http.service';
 import {Course, GlobalsComponent, User, Video} from "../../../globals/globals.component";
-//import { Observable} from 'rxjs';
 
 @Component({
   selector: 'app-student',
@@ -10,7 +8,6 @@ import {Course, GlobalsComponent, User, Video} from "../../../globals/globals.co
   styleUrls: ['./student.component.css']
 })
 export class StdIndexComponent implements OnInit {
-  private token:User;
   userInfo:User;
   coursesInfo:Course[];
   professorInfo:User[];
@@ -19,8 +16,8 @@ export class StdIndexComponent implements OnInit {
 
   constructor(private _httpService: HTTPService) { //private _httpService: HTTPService private http: HttpClient,
     this.uri = GlobalsComponent.api+GlobalsComponent.version; //localhost
-    this.token = JSON.parse(atob(sessionStorage.getItem('token').split('.')[1]));
-    this._httpService.getUserAct(this.token._id).subscribe(us => { // servicio http devuelve la info del usuario
+    let token = JSON.parse(atob(sessionStorage.getItem('token').split('.')[1]));
+    this._httpService.getUserAct(token._id).subscribe(us => { // servicio http devuelve la info del usuario
       this.userInfo = <User>us;
       this._httpService.getCoursesInfo(this.userInfo.coursesID).subscribe(courses => {
         this.coursesInfo = <Course[]>courses;

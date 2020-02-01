@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { HttpClient } from '@angular/common/http';
+import { HTTPService } from '../../../services/http.service';
+import {User} from "../../../globals/globals.component";
 
 @Component({
   selector: 'app-login-callback',
@@ -10,19 +11,19 @@ import { HttpClient } from '@angular/common/http';
 export class LoginCallbackComponent implements OnInit {
   private uri:string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+  constructor(private _httpService: HTTPService, private route: ActivatedRoute, private router: Router) {
     this.uri = 'http://192.168.1.125:3000'; //localhost
   }
 
   ngOnInit() {
     let password = sessionStorage.getItem('pass');
     sessionStorage.removeItem('pass');
-    // console.log(this.pass);
-    this.route.queryParamMap.subscribe((p: any) => {
+    console.log(this.route.snapshot.params.code);
+    //this.route.snapshot.params.code
+    //this.route.queryParamMap.subscribe((p: any) => {
       // console.log(p.params);
-      this.http.post(`${this.uri}/callback`, { code: p.params.code, pass: password }).subscribe((data: any) => {
+    this._httpService.callback(this.route.snapshot.params.code, password).subscribe((data: User) => { // p.params.code
         sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
-        
         let auth = Number(data.authlvl);
         if (auth >= 127) {
           this.router.navigate(['professor']);
@@ -33,8 +34,7 @@ export class LoginCallbackComponent implements OnInit {
         } else if (auth >= 1) {
           this.router.navigate(['student']);
         }
-        
       }, (error: any) => {console.log(error);});
-    });
+    //});
   }
 }

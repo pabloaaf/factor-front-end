@@ -6,14 +6,18 @@ import {Component} from '@angular/core';
 })
 
 export class GlobalsComponent {
-  static version = ''; //future
-  static api = 'http://192.168.1.125:3000'; // s
+  static version = '/'; //future
+  static api = 'http://192.168.1.125:3000'; // s ToDo
   static staticsURL = 'assets/';
   static languages = [
     { code: 'en', label: 'English', img: 'english'},
     { code: 'es', label: 'Español', img: 'spanish'},
     { code: 'fr', label: 'Français', img: 'french'}
   ];
+
+  logout() {
+    sessionStorage.removeItem('token');
+  }
 }
 
 export class Error {
@@ -28,6 +32,7 @@ export class Error {
 
 export class User {
   _id: number;
+  token: string;
   email: string;
   family_name: string;
   given_name: string;
