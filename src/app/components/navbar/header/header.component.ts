@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,15 +8,17 @@ import { ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
   public userType:boolean = false;
   @Input() picture: String;
-  constructor(private route: ActivatedRoute) { }
+  @Input() auth: number;
+
+  constructor() { }
 
   ngOnInit() {
-    if(this.route.snapshot.url[0].path == 'prof'){
+    if(this.auth >= 63){
       this.userType = true;
-      console.log('professor');
+      //console.log('professor');
     } else {
       this.userType = false;
-      console.log('student');
+      //console.log('student');
     }
   }
 

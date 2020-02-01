@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,18 +6,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public userType:boolean = false;
+  public userType: boolean = false;
+  @Input() auth: number;
 
-  constructor(private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    if(this.route.snapshot.url[0].path == 'prof'){
-      this.userType = true;
-      console.log('professor');
-    } else {
-      this.userType = false;
-      console.log('student');
-    }
+  constructor() {
   }
 
+  ngOnInit() {
+    if (this.auth >= 63) {
+      this.userType = true;
+      //console.log('professor');
+    } else {
+      this.userType = false;
+      //console.log('student');
+    }
+  }
 }
