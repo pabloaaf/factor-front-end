@@ -6,3 +6,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .container-fluid{
 	padding:0px !important; 
 }
+
+.footer {
+	/*position: absolute; ToDo*/
+	bottom: 0;
+	width: 100%;
+	background-color: #f5f5f5;
+	max-width: unset;
+}

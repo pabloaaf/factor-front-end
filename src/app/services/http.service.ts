@@ -45,6 +45,14 @@ export class HTTPService {
     return this.http.post<User[]>(GlobalsComponent.api + GlobalsComponent.version + 'users/id', {id:ids});
   }
 
+  getVideoIdInfo(id:string):Observable<Video> {
+    return this.http.post<Video>(GlobalsComponent.api + GlobalsComponent.version + 'videos/id', {id:id});
+  }
+
+  editVideoIdInfo(id:string, courseID:string, name:string):Observable<Video> {
+    return this.http.put<Video>(GlobalsComponent.api + GlobalsComponent.version + 'videos/id', {id:id, course:courseID, name:name});
+  }
+
   /*** File uploads ***/
   uploadFile(videoForm, file){
     return this.http.post(GlobalsComponent.api + GlobalsComponent.version + 'videos', this._fileService.toFormData(videoForm, file),
