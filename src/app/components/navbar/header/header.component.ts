@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   @Input() auth: number;
 
   constructor() {
-    this.picture = "";
+    //this.picture = "";
   }
 
   ngOnInit() {

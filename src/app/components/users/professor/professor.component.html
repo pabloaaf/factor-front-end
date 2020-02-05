@@ -1,7 +1,7 @@
 <app-header [auth]="userInfo.authlvl" [picture]="userInfo.picture"></app-header>
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading" i18n>Upload Video</h1>
+        <h1 class="jumbotron-heading" id="top" i18n>Upload Video</h1>
         <p class="lead text-muted"><span i18n>Welcome professor</span> {{userInfo.family_name}}, {{userInfo.given_name}}</p>
         <p class="lead text-muted" i18n>Please, upload your video following the next steps.</p>
         <form [formGroup]="uploadVideoForm" (ngSubmit)="saveVideo()"><!--<form>-->
@@ -85,4 +85,4 @@
         </div>
     </div>
 </div>
-<app-footer [auth]="userInfo.authlvl"></app-footer>
+<footer class="footer" app-footer [auth]="userInfo.authlvl"></footer>

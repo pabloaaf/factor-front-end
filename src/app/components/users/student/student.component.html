@@ -1,5 +1,5 @@
 <app-header [auth]="userInfo.authlvl" [picture]="userInfo.picture"></app-header>
-<h1><span i18n>Welcome</span> {{userInfo.family_name}}, {{userInfo.given_name}}</h1>
+<h1 id="top"><span i18n>Welcome</span> {{userInfo.family_name}}, {{userInfo.given_name}}</h1>
 <h3 i18n>Your courses:</h3>
 <div class="accordion" id="accordion">
     <div class="card" *ngFor="let course of coursesInfo; let i=index">
@@ -42,4 +42,4 @@
 <!--<form class="form-inline my-2 my-md-0">
             <input class="form-control" type="text" placeholder="Search">
         </form>-->
-<app-footer [auth]="userInfo.authlvl"></app-footer>
+<footer class="footer" app-footer [auth]="userInfo.authlvl"></footer>
