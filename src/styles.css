@@ -3,13 +3,22 @@
 /*body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 */
+
+/*html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	margin-bottom: 60px; /* Margin bottom by footer height */
+/*}*/
 .container-fluid{
 	padding:0px !important; 
 }
 
 .footer {
-	/*position: absolute; ToDo*/
+	/*position: absolute;*/
 	bottom: 0;
+	height: 60px; /* Set the fixed height of the footer here */
 	width: 100%;
 	background-color: #f5f5f5;
 	max-width: unset;

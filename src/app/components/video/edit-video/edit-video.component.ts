@@ -40,13 +40,13 @@ export class EditVideoComponent implements OnInit {
     });
   }
 
-  get f() { return this.uploadVideoForm.controls; }
+  get f() { return this.editVideoInfoForm.controls; }
 
   public editVideo() {
     this.submitted = true;
 
     // stop the process here if form is invalid
-    if (this.loginForm.invalid) {
+    if (this.editVideoInfoForm.invalid) {
       return;
     }
     this._httpService.editVideoIdInfo(this.videoInfo._id, this.videoInfo.courseID, this.videoInfo.name).subscribe(video => {

@@ -45,6 +45,7 @@ export class User {
 
 
   constructor() {
+    this.picture = "";
     this._id = 0;
     this.courses = [];
   }

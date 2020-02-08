@@ -11,9 +11,9 @@ import {FileService} from "../../../services/file.service";
   styleUrls: ['./professor.component.css']
 })
 export class ProfIndexComponent implements OnInit {
-  userInfo:any;
-  coursesInfo:any;
-  videoInfo:any;
+  userInfo:User;
+  coursesInfo:Course[];
+  videoInfo:Video;
   uploadVideoForm: FormGroup;
   submitted = false;
   progress = 0;

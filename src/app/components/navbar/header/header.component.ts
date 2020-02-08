@@ -7,14 +7,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public userType:boolean = false;
-  @Input() picture: String;
+  @Input() picture: string;
   @Input() auth: number;
+  public picReady:boolean = false;
 
   constructor() {
     //this.picture = "";
   }
 
   ngOnInit() {
+    if (this.picture) {
+      this.picReady = true;
+    }
     if(this.auth >= 63){
       this.userType = true;
       //console.log('professor');
