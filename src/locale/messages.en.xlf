@@ -105,6 +105,10 @@
           <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="96f574ce3cd7d0ae175167ec8541b5b800c893c2" datatype="html">
         <source>2. Select Video:</source>
@@ -162,6 +166,58 @@
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="34f47699424c3050fd7d40794737a9d56ecc6227" datatype="html">
+        <source>Professor:</source>
+        <target>Professor:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/mockData/add-courses/add-courses.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="616e206cb4f25bd5885fc35925365e43cf5fb929" datatype="html">
+        <source>Name:</source>
+        <target>Name:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="26d9fe296059fcb228f209b8068d8e2dcff291f9" datatype="html">
+        <source>Class number:</source>
+        <target>Class number:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
+        <source>View</source>
+        <target>View</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/professor/professor.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="65cc4ab3b4c438e07c89be2b677d08369fb62da2" datatype="html">
         <source>Welcome</source>
         <target>Welcome</target>
@@ -176,42 +232,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
           <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="34f47699424c3050fd7d40794737a9d56ecc6227" datatype="html">
-        <source>Professor:</source>
-        <target>Professor:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/mockData/add-courses/add-courses.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="616e206cb4f25bd5885fc35925365e43cf5fb929" datatype="html">
-        <source>Name:</source>
-        <target>Name:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="26d9fe296059fcb228f209b8068d8e2dcff291f9" datatype="html">
-        <source>Class number:</source>
-        <target>Class number:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
-        <source>View</source>
-        <target>View</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/users/student/student.component.html</context>
-          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3588af967cf5dba8c5cf0c49f0520fbffb9ee0be" datatype="html">
@@ -367,15 +387,55 @@
         <target>Keywords</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/video/show-video/show-video.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4a105762d4f9520146c99c56a2bf9bc900d0316c" datatype="html">
-        <source>edit-video works!</source>
-        <target>edit-video works!</target>
+      <trans-unit id="f9b14037924dfabf6ed15aee772046e43d2b68cb" datatype="html">
+        <source>Edit Video</source>
+        <target>Edit Video</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="779d25e0033ff996f7b60b783938ed55e5f0023c" datatype="html">
+        <source>Course:</source>
+        <target>Course:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd3325ee0df48999a7bce73b33b80c789a87a159" datatype="html">
+        <source>File name:</source>
+        <target>File name:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5b752f143ab30faa45a2679b5e7a28bbf3fb246d" datatype="html">
+        <source>Name is required</source>
+        <target>Name is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+        <source>Save</source>
+        <target>Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f6cb0fa14002ba93d04c31e408367fc40426218c" datatype="html">
+        <source>Delete all</source>
+        <target>Delete all</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/video/edit-video/edit-video.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2ca61c0c1c69972abbaa563b1b4707e5216c7ea2" datatype="html">
@@ -424,10 +484,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navbar/footer/footer.component.html</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/navbar/footer/footer.component.html</context>
-          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
     </body>
