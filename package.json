@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
+    "build:i18n": "for lang in en es fr; do ng build -c production-$lang --base-href /$lang/;done",
+    "build:en": "ng build -c production-en --base-href /en/",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -28,7 +30,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.22",
+    "@angular-devkit/build-angular": "^0.803.23",
     "@angular/cli": "~8.3.22",
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
