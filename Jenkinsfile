@@ -11,6 +11,7 @@ pipeline {
         stage('Test/Coverage') {
             steps {
                 sh 'RUN npm run-script test'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Cov Report', reportTitles: ''])
             }
             post {
                 always {
