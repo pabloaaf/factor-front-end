@@ -1,6 +1,5 @@
-import { Component,ViewChild,OnInit,ElementRef } from '@angular/core';
+import { Component,ViewChild,OnInit,ElementRef,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-//import { HttpClient } from '@angular/common/http';
 import {GlobalsComponent, User, Video} from "../../../globals/globals.component";
 import {HTTPService} from "../../../services/http.service";
 
@@ -15,19 +14,37 @@ export class ShowVideoComponent implements OnInit {
   userInfo: User;
   videoInfo: Video;
   videoTranscribes: any;
+  public phrases: Array<{start: number, end: number, p:string}> = [];
   @ViewChild('vid', {static: false}) video: ElementRef;
 
-  constructor(private _httpService: HTTPService, private route: ActivatedRoute) {
+  constructor(private _httpService: HTTPService, private route: ActivatedRoute, private ref: ChangeDetectorRef) {
     this.uri = GlobalsComponent.api+GlobalsComponent.version; //localhost
     let token = JSON.parse(atob(sessionStorage.getItem('token').split('.')[1]));
     this._httpService.getUserAct(token._id).subscribe(us => { // servicio http devuelve la info del usuario
       this.userInfo = <User>us;
       this._httpService.getVideoIdInfo(this.route.snapshot.paramMap.get('id')).subscribe(video => {
         this.videoInfo = <Video>video;
-        console.log(this.video.nativeElement.currentTime);
-        this.video.nativeElement.currentTime = 10;
         this._httpService.getVideoTranscribes(this.route.snapshot.paramMap.get('id')).subscribe(transcribes => {
           this.videoTranscribes = transcribes;
+          let phraseAct = "";
+          let startT = 0;
+          let endT = 0;
+          for (let i = 0; i < this.videoTranscribes.result.item.length; i++) {
+            if(this.videoTranscribes.result.item[i].type == "punctuation"){
+              phraseAct += this.videoTranscribes.result.item[i].alternatives[0].content;
+              if(this.videoTranscribes.result.item[i+1] != undefined){
+                endT = Number(this.videoTranscribes.result.item[i+1].start_time);
+              } else{
+                endT = Number.MAX_VALUE;
+              }
+              this.phrases.push({start:startT,end:endT,p:phraseAct});
+              phraseAct = "";
+              startT = endT;
+            } else {
+              phraseAct += " " + this.videoTranscribes.result.item[i].alternatives[0].content;
+            }
+          }
+          console.log(this.phrases);
         });
       });
     });
@@ -37,8 +54,12 @@ export class ShowVideoComponent implements OnInit {
 
   public setVideoTime(time:string) {
     this.video.nativeElement.currentTime = Number.parseInt(time);
-    console.log(this.video.nativeElement.currentTime);
+    //console.log(this.video.nativeElement.currentTime);
     this.video.nativeElement.scrollIntoView({behavior:"smooth"});
 
+  }
+
+  public resetPhrase() {
+    this.ref.detectChanges();
   }
 }

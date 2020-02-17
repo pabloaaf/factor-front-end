@@ -1,11 +1,11 @@
 <!--<app-header *ngIf="!userInfo" [auth]="userInfo.authlvl"></app-header>-->
-<app-header [auth]="userInfo.authlvl" [picture]="userInfo?.picture"></app-header>
+<app-header [auth]="userInfo?.authlvl" [picture]="userInfo?.picture"></app-header>
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-md-7 py-4 mr-auto">
-            <figure class="mbr-figure align-center container"  [class.show]="videoInfo">
+            <figure class="mbr-figure align-center container">
                 <div class="video-block embed-responsive embed-responsive-16by9">
-                    <video class="embed-responsive-item" id="top" controls #vid>
+                    <video class="embed-responsive-item" id="top" [attr.autoplay]="true" (timeupdate)="resetPhrase()" controls #vid>
                         <source *ngIf="videoInfo" src="{{uri}}{{videoInfo.url}}" type="video/mp4">
                     </video>
                 </div>
@@ -13,8 +13,8 @@
         </div>
         <div class="col-sm-4 col-md-5">
             <h3>Current speech</h3>
-            <ng-container *ngFor="let i of videoTranscribes.result.item">
-                <span *ngIf="(i | videoPhrase:'{{video.nativeElement.currentTime}}')">{{i.alternatives[0].content}} </span> <!--https://medium.com/showpad-engineering/why-you-should-never-use-function-calls-in-angular-template-expressions-e1a50f9c0496-->
+            <ng-container *ngFor="let p of phrases">
+                <div *ngIf="(p | videoPhrase:video.nativeElement.currentTime)"><p>{{p.p}} </p></div> <!--https://medium.com/showpad-engineering/why-you-should-never-use-function-calls-in-angular-template-expressions-e1a50f9c0496-->
             </ng-container>
         </div>
     </div>
