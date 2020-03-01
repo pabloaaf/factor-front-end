@@ -17,6 +17,7 @@ import { EditVideoComponent } from './components/video/edit-video/edit-video.com
 import { HeaderComponent } from './components/navbar/header/header.component';
 import { FooterComponent } from './components/navbar/footer/footer.component';
 import { GlobalsComponent } from './globals/globals.component';
+import { VideoPhrasePipe } from './globals/video-phrase.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { GlobalsComponent } from './globals/globals.component';
     EditVideoComponent,
     HeaderComponent,
     FooterComponent,
-    GlobalsComponent
+    GlobalsComponent,
+    VideoPhrasePipe
   ],
   imports: [
     BrowserModule,

@@ -53,6 +53,10 @@ export class HTTPService {
     return this.http.put<Video>(GlobalsComponent.api + GlobalsComponent.version + 'videos/id', {id:id, course:courseID, name:name});
   }
 
+  getVideoTranscribes(id:string):Observable<any> {
+    return this.http.post<any>(GlobalsComponent.api + GlobalsComponent.version + 'videos/transcriptions/id', {id:id});
+  }
+
   /*** File uploads ***/
   uploadFile(videoForm, file){
     return this.http.post(GlobalsComponent.api + GlobalsComponent.version + 'videos', this._fileService.toFormData(videoForm, file),

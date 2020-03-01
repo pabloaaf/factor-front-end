@@ -18,11 +18,12 @@ export class LoginCallbackComponent implements OnInit {
   ngOnInit() {
     let password = sessionStorage.getItem('pass');
     sessionStorage.removeItem('pass');
-    console.log(this.route.snapshot.params.code);
+      //console.log(this.route.snapshot.params.code);
+      console.log(this.route.snapshot.paramMap.get('code'));
     //this.route.snapshot.params.code
-    //this.route.queryParamMap.subscribe((p: any) => {
+    this.route.queryParamMap.subscribe((p: any) => {
       // console.log(p.params);
-    this._httpService.callback(this.route.snapshot.params.code, password).subscribe((data: User) => { // p.params.code
+    this._httpService.callback(p.params.code, password).subscribe((data: User) => { // p.params.code
         sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
         let auth = Number(data.authlvl);
         if (auth >= 127) {
@@ -35,6 +36,6 @@ export class LoginCallbackComponent implements OnInit {
           this.router.navigate(['student']);
         }
       }, (error: any) => {console.log(error);});
-    //});
+    },err=>{console.log(err)});
   }
 }
