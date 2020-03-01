@@ -25,10 +25,10 @@ pipeline {
                 sh 'echo future.'
             }
         }
-        post {
-            always {
-                junit "test-results.xml"
-            }
+    }
+    post {
+        always {
+            junit "test-results.xml"
         }
     }
 }
