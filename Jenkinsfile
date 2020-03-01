@@ -26,9 +26,9 @@ pipeline {
             }
         }
     }
-    post {
-        always {
+    //post {
+        //always {
             //junit "test-results.xml"
-        }
-    }
+        //}
+    //}
 }
