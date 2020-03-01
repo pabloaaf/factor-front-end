@@ -54,7 +54,7 @@ export class HTTPService {
   }
 
   getVideoTranscribes(id:string):Observable<any> {
-    return this.http.post<any>(GlobalsComponent.api + GlobalsComponent.version + 'videos/transcriptions/id', {id:"all4"});
+    return this.http.post<any>(GlobalsComponent.api + GlobalsComponent.version + 'videos/transcriptions/id', {id:id});
   }
 
   /*** File uploads ***/
