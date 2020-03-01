@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'angular/ngcontainer:latest' }
+        docker { image 'angular/ngcontainer' }
     }
     triggers{ cron('H/15 H(9-16) * * 1-5') }
     stages {
