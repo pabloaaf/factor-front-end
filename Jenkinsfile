@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'node:10-alpine' }
+        dockerfile true
     }
     triggers{ cron('H/15 H(9-16) * * 1-5') }
     stages {
@@ -11,13 +11,13 @@ pipeline {
         }
         stage('Test/Coverage') {
             steps {
-                sh 'npm test'
+                sh 'RUN npm run-script test'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Cov Report', reportTitles: ''])
             }
         }
         stage('Build') {
             steps {
-                sh 'npm build:i18n --prod --build-optimizer'
+                sh 'RUN npm run-script build:i18n --prod --build-optimizer'
             }
         }
         stage('deploy') {
