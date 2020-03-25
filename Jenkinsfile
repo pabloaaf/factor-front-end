@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        docker { image 'node:10-alpine' }
+        docker { 
+        	image 'node:10-alpine'
+        	args '-u 0'
+        }
     }
     triggers{ cron('H/15 H(9-16) * * 1-5') }
     stages {
