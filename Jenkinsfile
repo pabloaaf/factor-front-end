@@ -11,7 +11,9 @@ pipeline {
         }
         stage('Test/Coverage') {
             steps {
-                sh 'npm install'
+                sh 'apk add g++ make python'
+                sh 'npm ci'
+                //sh 'npm install'
                 sh 'npm test'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Cov Report', reportTitles: ''])
             }
