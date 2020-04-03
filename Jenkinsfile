@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm build:i18n --prod --build-optimizer'
+                sh 'npm run-script build:i18n --prod --build-optimizer'
             }
         }
         stage('deploy') {
