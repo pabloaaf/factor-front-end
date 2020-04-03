@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Test/Coverage') {
             steps {
-                sh 'sudo apt update && apt-get install g++ make python'
+                sh 'apt-get install g++ make python --fix-missing'
                 sh 'npm ci'
                 sh 'npm rebuild'
                 //sh 'npm install'
