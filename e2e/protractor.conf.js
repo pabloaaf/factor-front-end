@@ -3,6 +3,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const { SpecReporter } = require('jasmine-spec-reporter');
+const process = require('process');
 process.env.CHROME_BIN = require('puppeteer').executablePath();
 /**
  * @type { import("protractor").Config }
