@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-        	image 'angular/ngcontainer'
+        	image 'node'
         	args '-u 0 --entrypoint=""'
         }
     }
