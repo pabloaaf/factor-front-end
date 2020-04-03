@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:pup": "ng test --browsers=ChromeHeadless --code-coverage --watch=false --source-map=false",
+    "test:pup": "ng test --browsers=ChromeHeadlessNoSandbox --code-coverage --watch=false --source-map=false",
     "build:ci": "npm run clean && npm run test && npm run build:prod"
   },
   "private": true,
