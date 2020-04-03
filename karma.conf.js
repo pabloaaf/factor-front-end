@@ -27,14 +27,21 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadlessNoSandbox'],
+    browsers: ['Chrome', 'ChromeHeadlessNoSandbox'],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--headless', '--remote-debugging=9222', '--disable-gpu', '--disable-web-security']
+        flags: [
+          '--no-sandbox', 
+          '--headless', 
+          '--remote-debugging=9222', 
+          '--disable-gpu',
+          '--disable-extensions',
+          '--disable-web-security'
+        ]
       }
     },
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: false,
     concurrency: Infinity
   });
