@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-        	image 'node:10-alpine'
+        	image 'angular/ngcontainer:latest'
         	args '-u 0'
         }
     }
