@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker { 
-        	image 'angular/ngcontainer:latest'
-        	args '-u 0'
+        	image 'angular/ngcontainer'
+        	args '-u 0 --entrypoint=""'
         }
     }
     triggers{ cron('H/15 H(9-16) * * 1-5') }
