@@ -4,7 +4,6 @@
 
 const { SpecReporter } = require('jasmine-spec-reporter');
 process.env.CHROME_BIN = require('puppeteer').executablePath();
-
 /**
  * @type { import("protractor").Config }
  */
@@ -17,7 +16,7 @@ exports.config = {
     browserName: 'chrome',
     chromeOptions: {
       binary: process.env.CHROME_BIN,
-      args: ['--headless', '--disable-gpu', '--window-size=800,600', '--no-sandbox']
+      args: ['--headless', '--disable-gpu', '--no-sandbox']
     }
   },
   directConnect: true,
