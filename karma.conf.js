@@ -32,7 +32,11 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--headless', '--disable-gpu', 'disable-web-security']
+        flags: ['--headless', 
+          '--remote-debugging-port=9222',
+          '--no-sandbox', 
+          '--proxy-server=\'direct://\'',
+          '--proxy-bypass-list=*']
       }
     }
   });
