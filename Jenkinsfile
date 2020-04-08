@@ -20,7 +20,7 @@ pipeline {
                 sh 'npm rebuild'
                 //sh 'npm install'
                 sh 'npm run-script test:pup'
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Cov Report', reportTitles: ''])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage/factor', reportFiles: 'index.html', reportName: 'HTML Cov Report', reportTitles: ''])
             }
         }
         stage('Build') {
