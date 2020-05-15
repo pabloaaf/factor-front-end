@@ -30,7 +30,7 @@
     <div class="form-group">
         <label for="seluser" i18n>User:</label>
         <select class="form-control" id="seluser" formControlName="user" #user>
-            <option *ngFor="let u of users" value={{u._id}}>{{u.family_name}},{{u.given_name}}</option>
+            <option *ngFor="let u of users" value="{{u._id}}">{{u.family_name}},{{u.given_name}}</option>
         </select>
     </div>
     <div class="form-group">

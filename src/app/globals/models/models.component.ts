@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class ModelsComponent {
 
-  static version = '/'; //future
+  static version = '/api/'; //future
   static api = 'http://192.168.1.125:3000'; // s ToDo
   static staticsURL = 'assets/';
   static languages = [

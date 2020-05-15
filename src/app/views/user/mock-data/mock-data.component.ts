@@ -39,13 +39,13 @@ export class MockDataComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.http.post(ModelsComponent.api + ModelsComponent.version + 'courses', {name:cname,number:Number(cnumber),professor:Number(profID)}).subscribe((data: any) => {
+    this.http.post(ModelsComponent.api + ModelsComponent.version + 'courses', {name:cname,number:Number(cnumber),professorID:profID}).subscribe((data: any) => {
       let message = data.message;
       console.log(message);
 
       //form validation stoped the next action
       //this.addCourseToUser(Number(profID), data.token._id);
-      this.http.post(ModelsComponent.api + ModelsComponent.version + 'users', {user:Number(profID), course:data.token._id}).subscribe((data: any) => {
+      this.http.put(ModelsComponent.api + ModelsComponent.version + 'users/' + profID, {coursesID:data._id}).subscribe((data: any) => {
         let message = data.message;
         console.log(message);
         this.getAllUsers();
@@ -59,7 +59,7 @@ export class MockDataComponent implements OnInit {
     if (this.form2.invalid) {
       return;
     }
-    this.http.post(ModelsComponent.api + ModelsComponent.version + 'users', {user:user, course:course}).subscribe((data: any) => {
+    this.http.put(ModelsComponent.api + ModelsComponent.version + 'users/' + user, {coursesID:course}).subscribe((data: any) => {
       let message = data.message;
       console.log(message);
       this.getAllUsers();
