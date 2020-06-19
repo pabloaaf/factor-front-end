@@ -1,4 +1,6 @@
 <app-header [auth]="userInfo.authlvl" [picture]="userInfo?.picture"></app-header>
+<div id="page-content" class="container-fluid">
+
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading" id="top" i18n>Upload Video</h1>
@@ -85,4 +87,5 @@
         </div>
     </div>
 </div>
-<app-footer class="footer" [auth]="userInfo.authlvl"></app-footer>
+</div>
+<app-footer [auth]="userInfo.authlvl"></app-footer>

@@ -1,4 +1,4 @@
-<!--<app-header *ngIf="!userInfo" [auth]="userInfo.authlvl"></app-header>-->
+<div id="page-content"><!--<app-header *ngIf="!userInfo" [auth]="userInfo.authlvl"></app-header>-->
 <app-header [auth]="userInfo?.authlvl" [picture]="userInfo?.picture"></app-header>
 <div class="container">
     <div class="row">
@@ -52,4 +52,5 @@
         </div>
     </div>
 </div>
-<app-footer class="footer" [auth]="userInfo.authlvl"></app-footer>
+</div>
+<app-footer [auth]="userInfo.authlvl"></app-footer>
