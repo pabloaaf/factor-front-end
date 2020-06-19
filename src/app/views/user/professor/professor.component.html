@@ -1,6 +1,5 @@
-<app-header [auth]="userInfo.authlvl" [picture]="userInfo?.picture"></app-header>
-<div id="page-content" class="container-fluid">
-
+<app-header [auth]="userInfo?.authlvl" [picture]="userInfo?.picture"></app-header>
+<div [ngClass]="(userInfo?.authlvl >= 64)?'bodyprofessor':'bodystudent'" class="container-fluid">
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading" id="top" i18n>Upload Video</h1>
@@ -88,4 +87,4 @@
     </div>
 </div>
 </div>
-<app-footer [auth]="userInfo.authlvl"></app-footer>
+<app-footer [auth]="userInfo?.authlvl"></app-footer>

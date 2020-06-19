@@ -1,26 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-/*.container-fluid{
-	padding:0px !important;
-}
 
 .footer {
-	/ *position: absolute;* /
+	position: fixed;
+	left: 0;
 	bottom: 0;
-	height: 60px; /* Set the fixed height of the footer here * /
 	width: 100%;
 	background-color: #f5f5f5;
 	max-width: unset;
-}*/
-
-html,
-body {
-  height: 100%;
 }
 
-#page-content {
-  flex: 1 0 auto;
+.bodyprofessor {
+	margin-bottom:120px;
 }
 
-#sticky-footer {
-  flex-shrink: 0;
+.bodystudent {
+	margin-bottom:160px;
 }
