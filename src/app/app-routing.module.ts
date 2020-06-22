@@ -19,10 +19,9 @@ const routes: Routes = [
 	{path: 'prof/show/:id', component: ShowVideoComponent},
 	{path: 'prof/video/edit/:id', component: EditVideoComponent},
 	{path: 'student', redirectTo: 'std/index', pathMatch: 'full'},
-	{path: 'std/index', component: StudentComponent},
+	{path: 'std/index', canActivate: [AuthGuard], component: StudentComponent},
 	{path: 'std/show/:id', component: ShowVideoComponent},
 	{path: 'mockcourses', component: MockDataComponent},
-	{path: 'googleauth', canActivate: [AuthGuard], component: StudentComponent}
 ];
 
 @NgModule({
