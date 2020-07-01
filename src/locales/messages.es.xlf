@@ -75,7 +75,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="09c7707928dc232121fed544e44200d40477da62" datatype="html">
-        <source>create course!</source>
+        <source>Create course!</source>
         <target>Cree un curso!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/views/user/mock-data/mock-data.component.html</context>
