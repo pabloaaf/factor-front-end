@@ -16,7 +16,7 @@ COPY . .
 ## Build the angular app in production mode and store the artifacts in dist folder
 # RUN npm update
 # RUN npm run ng help
-RUN npm run-script build:en --prod
+RUN npm run-script build:i18n --prod
 
 
 ### STAGE 2: Setup ###
