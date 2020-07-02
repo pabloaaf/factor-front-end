@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class ModelsComponent {
 
   static version = '/api/'; //future
-  static api = 'http://192.168.1.125:3000'; // s ToDo
+  static api = 'http://192.168.1.132'; // s ToDo
   static staticsURL = 'assets/';
   static languages = [
     { code: 'en', label: 'English', img: 'english'},
