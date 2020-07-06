@@ -36,11 +36,16 @@ pipeline {
                 sh 'npm run-script build:i18n --prod --build-optimizer'
             }
         }
-        stage('deploy') {
-            steps {
-                sh 'echo future.'
-            }
-        }
+        //stage('Publish') {
+            //steps {
+                //steps {
+                    //withDockerRegistry([ credentialsId: "6544de7e-17a4-4576-9b9b-e86bc1e4f903", url: "" ]) {
+                        //sh 'docker push brightbox/terraform:latest'
+                        //sh 'docker push brightbox/cli:latest'
+                    //}
+                //}
+            //}
+        //}
     }
     //post {
         //always {
