@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { 
+        docker {
         	image 'node'
         	args '-u 0 --entrypoint=""'
         }
@@ -16,7 +16,7 @@ pipeline {
         }
         stage("Env Variables") {
             steps {
-                sh "printenv"
+                //sh "printenv"
                 echo "The build number is ${env.BUILD_NUMBER}"
                 echo "You can also use \${BUILD_NUMBER} -> ${BUILD_NUMBER}"
                 sh 'echo "I can access $BUILD_NUMBER in shell command as well."'
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh 'npm ci'
                 sh 'npm rebuild'
-                //sh 'npm install'
+                sh 'npm install'
                 sh 'npm run-script test:pup'
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage/factor', reportFiles: 'index.html', reportName: 'HTML Cov Report', reportTitles: ''])
             }
