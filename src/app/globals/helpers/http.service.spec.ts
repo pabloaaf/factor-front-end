@@ -9,12 +9,8 @@ describe('HttpService', () => {
   let service: HttpService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-    	imports: [
-    		HttpClientTestingModule
-    	],
-    	providers: [
-    		HttpService
-    	]
+      imports: [ HttpClientTestingModule ],
+      providers: [ HttpService ]
     });
     service = TestBed.inject(HttpService);
   });
@@ -23,13 +19,15 @@ describe('HttpService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have getuserAct function', async(inject([HttpTestingController, HttpService], (httpClient: HttpTestingController, serviceI: HttpService) => {
+  it('should have getuserAct function', async(
+      inject([HttpTestingController, HttpService],
+        (httpClient: HttpTestingController, serviceI: HttpService) => {
     const mockUserAct = new User();
     mockUserAct.given_name = "Bob";
     mockUserAct.authlvl = 1;
     mockUserAct.picture ="dfsffd";
 
-    serviceI.getUserAct(1).subscribe(us => {
+    serviceI.getUserAct("1").subscribe(us => {
         expect(us).toEqual(mockUserAct);
     });
 
