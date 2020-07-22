@@ -3,9 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShowVideoComponent } from './show-video.component';
 import { HttpService } from '../../../globals/helpers/http.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ActivatedRoute } from "@angular/router";
-import { convertToParamMap } from '@angular/router';
-import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { MockHTTP } from '../../../../tests/mockHTTPService';
 
 describe('ShowVideoComponent', () => {
@@ -16,7 +14,7 @@ describe('ShowVideoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ShowVideoComponent ],
       imports: [ HttpClientTestingModule ],
-      providers: [ 
+      providers: [
         {provide: HttpService, useClass: MockHTTP},
         {provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 1 } } } }
       ]
@@ -45,8 +43,10 @@ describe('ShowVideoComponent', () => {
     spyOn(sessionStorage, 'setItem').and.callFake(mockLocalStorage.setItem);
     spyOn(sessionStorage, 'removeItem').and.callFake(mockLocalStorage.removeItem);
     spyOn(sessionStorage, 'clear').and.callFake(mockLocalStorage.clear);
-    sessionStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImExZjk1MzIzLTQ5OWMtNDI2Ni05MjcyLWM0NDZlMDE1NmM4NyIsImlhdCI6MTU4MzkwNTU3MCwiZXhwIjoxNTgzOTA5MzYyfQ.kKv8ssCpqjiyaN0vJ6hDwR7LdqEALyOavyRbZd-arYc');
-    
+    sessionStorage.setItem('token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.' +
+      'eyJfaWQiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImExZjk1MzIzLTQ5OWMtNDI2Ni05MjcyLW' +
+      'M0NDZlMDE1NmM4NyIsImlhdCI6MTU4MzkwNTU3MCwiZXhwIjoxNTgzOTA5MzYyfQ.kKv8ssCpqjiyaN0vJ6hDwR7LdqEALyOavyRbZd-arYc');
+
     fixture = TestBed.createComponent(ShowVideoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

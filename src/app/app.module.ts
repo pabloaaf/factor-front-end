@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,8 @@ import { VideoPhrasePipe } from './globals/helpers/video-phrase.pipe';
 import { AuthGuard } from './globals/helpers/auth.guard';
 import { HeaderComponent } from './globals/navbars/header/header.component';
 import { FooterComponent } from './globals/navbars/footer/footer.component';
+import { JwtInterceptor } from './globals/helpers/jwt.interceptor';
+import { ErrorInterceptor } from './globals/helpers/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,11 @@ import { FooterComponent } from './globals/navbars/footer/footer.component';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

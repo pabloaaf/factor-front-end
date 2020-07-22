@@ -48,14 +48,14 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/views/index/login/login.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6255a8674662e55d6ccc3ad46cc1dd0dd6394d75" datatype="html">
         <source>Forgot Password?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/views/index/login/login.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="aeba58a0ed9492f2a6a05931a418007c10f6bbf3" datatype="html">

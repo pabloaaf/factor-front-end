@@ -8,7 +8,7 @@
     "build:prod": "ng build --prod",
     "build:i18n": "for lang in en es fr; do ng build -c production-$lang --base-href /$lang/;done",
     "build:en": "ng build -c production-en --base-href /en/",
-    "lang": "ng xi18n src/locales",
+    "lang": "ng xi18n --outputPath=src/locales/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

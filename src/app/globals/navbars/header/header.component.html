@@ -15,7 +15,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="dropdownnav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img alt="user picture" src="{{picture}}" width="50" height="50"></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownnav" style="margin-left: -100px;">
-                    <a class="dropdown-item" [routerLink]="['/']" i18n>Logout (door)</a>
+                    <a class="dropdown-item" (click)="logout()" i18n>Logout (door)</a>
                 </div>
             </li>
         </ul>

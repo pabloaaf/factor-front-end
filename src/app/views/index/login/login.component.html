@@ -4,7 +4,7 @@
 		<div class="login">
 			<img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk.svg">
 			<form [formGroup]="loginForm" (ngSubmit)="verifyUser()">
-				<div class="form-group">
+        <div class="form-group">
 					<label for="email" i18n>Username:</label><br>
 					<input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
 					<div *ngIf="submitted && f.email.errors" class="text-danger">
@@ -21,9 +21,13 @@
 					</div>
           		</div>
           		<div class="row">
-					<button type="submit" class="btn btn-primary mr-auto" style="margin-left: 15px;" i18n>Login</button>
+					<button type="submit" class="btn btn-primary mr-auto" style="margin-left: 15px;" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <span i18n>Login</span>
+          </button>
 					<button type="button" (click)="forgotPasswordForm()" class="btn btn-secondary" style="margin-right: 15px;" i18n>Forgot Password?</button>
 				</div>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">Wrong email or password</div>
 			</form>
 		</div>
   	</div>

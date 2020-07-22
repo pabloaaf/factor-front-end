@@ -1,9 +1,8 @@
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { pipe } from 'rxjs';
 import { HttpService } from '../../../globals/helpers/http.service';
-import { ModelsComponent, Course, User, Video } from "../../../globals/models/models.component";
-import { FileService } from "../../../globals/helpers/file.service";
+import { ModelsComponent, Course, User, Video } from '../../../globals/models/models.component';
+import { FileService } from '../../../globals/helpers/file.service';
 
 @Component({
   selector: 'app-professor',
@@ -11,37 +10,39 @@ import { FileService } from "../../../globals/helpers/file.service";
   styleUrls: ['./professor.component.css']
 })
 export class ProfessorComponent implements OnInit {
-  userInfo:User;
-  coursesInfo:Course[];
-  videoInfo:Video;
+  userInfo: User;
+  coursesInfo: Course[];
+  videoInfo: Video;
   uploadVideoForm: FormGroup;
   submitted = false;
   progress = 0;
   file: File | null = null;
-  videosInfo:Video[];
-  uri:string;
+  videosInfo: Video[];
+  uri: string;
 
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     const file = event && event.item(0);
     this.file = file;
   }
-
-  constructor(private formBuilder: FormBuilder, private _httpService: HttpService, private _fileService: FileService, private host: ElementRef<HTMLInputElement>) {
-      this.uri = ModelsComponent.api+ModelsComponent.version;
-      let token = JSON.parse(atob(sessionStorage.getItem('token').split('.')[1]));
-      this._httpService.getUserAct(token._id).subscribe(us => { // servicio http devuelve la info del usuario
-          this.userInfo = <User>us;
-          this._httpService.getCoursesInfo(this.userInfo.coursesID).subscribe(courses => {
-            this.coursesInfo = <Course[]>courses;
-          });
-          this._httpService.getVideosInfo(this.userInfo.coursesID).subscribe(videos => {
-            this.videosInfo = <Video[]>videos;
-          });
+  constructor(private formBuilder: FormBuilder, private _httpService: HttpService, private _fileService: FileService,
+              private host: ElementRef<HTMLInputElement>) {
+      this.uri = ModelsComponent.api + ModelsComponent.version;
+      const user = this._httpService.currentUserValue;
+      this._httpService.getUserAct(user._id).subscribe(us => { // servicio http devuelve la info del usuario
+          this.userInfo = us as User;
+          if (this.userInfo.coursesID.length > 0) {
+            this._httpService.getCoursesInfo(this.userInfo.coursesID).subscribe(courses => {
+              this.coursesInfo = courses as Array<Course>;
+            });
+            this._httpService.getVideosInfo(this.userInfo.coursesID).subscribe(videos => {
+              this.videosInfo = videos as Array<Video>;
+            });
+          }
       }, err => console.log(err));
   }
 
   ngOnInit(): void {
-  	this.uploadVideoForm = this.formBuilder.group({
+    this.uploadVideoForm = this.formBuilder.group({
       course: ['', Validators.required],
       video: ['', [Validators.required, this._fileService.requiredFileType('mp4')]]
     });
@@ -62,7 +63,7 @@ export class ProfessorComponent implements OnInit {
           this._fileService.toResponseBody()
       ).subscribe((data: any) => {
           this.progress = 0;
-          //this.uploadVideoForm.reset();
+          // this.uploadVideoForm.reset();
           this.videoInfo = data;
           console.log(this.videoInfo);
           // do something with the response

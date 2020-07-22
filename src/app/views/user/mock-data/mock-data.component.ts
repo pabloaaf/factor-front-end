@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModelsComponent } from "../../../globals/models/models.component";
+import {ModelsComponent, User} from '../../../globals/models/models.component';
+import {Router} from "@angular/router";
+import {HttpService} from "../../../globals/helpers/http.service";
 
 @Component({
   selector: 'app-mock-data',
@@ -13,13 +15,21 @@ export class MockDataComponent implements OnInit {
   form2: FormGroup;
   users: any[];
   courses: any[];
+  currentUser: User;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
-  	this.users = [];
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router,
+              private _httpService: HttpService) {
+    this.users = [];
     console.log(this.users);
     this.getAllUsers();
     console.log(this.users);
     this.getAllCourses();
+    this._httpService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  logout() {
+    this._httpService.logout();
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {
@@ -28,7 +38,7 @@ export class MockDataComponent implements OnInit {
       cnumber: ['', Validators.required],
       profID: ['', Validators.required]
     });
-    this.form2 = this.formBuilder.group({
+  this.form2 = this.formBuilder.group({
       user: ['', Validators.required],
       course: ['', Validators.required]
     });
@@ -39,47 +49,49 @@ export class MockDataComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.http.post(ModelsComponent.api + ModelsComponent.version + 'courses', {name:cname,number:Number(cnumber),professorID:profID}).subscribe((data: any) => {
+    this.http.post(ModelsComponent.api + ModelsComponent.version + 'courses',
+      {name: cname, number: Number(cnumber), professorID: profID}).subscribe((data: any) => {
       let message = data.message;
       console.log(message);
 
-      //form validation stoped the next action
-      //this.addCourseToUser(Number(profID), data.token._id);
-      this.http.put(ModelsComponent.api + ModelsComponent.version + 'users/' + profID, {coursesID:data._id}).subscribe((data: any) => {
-        let message = data.message;
-        console.log(message);
+      // form validation stoped the next action
+      // this.addCourseToUser(Number(profID), data.token._id);
+      this.http.put(ModelsComponent.api + ModelsComponent.version + 'users/' + profID,
+        {coursesID: data._id}).subscribe((data: any) => {
+        let message2 = data.message;
+        console.log(message2);
         this.getAllUsers();
-      }, (error: any) => {console.log(error);});
+      }, (error: any) => {console.log(error); });
       this.getAllCourses();
-    }, (error: any) => {console.log(error);});
+    }, (error: any) => {console.log(error); });
   }
 
-  addCourseToUser(user, course){
+  addCourseToUser(user, course) {
     // just mock proposes, omitted error verification
     if (this.form2.invalid) {
       return;
     }
-    this.http.put(ModelsComponent.api + ModelsComponent.version + 'users/' + user, {coursesID:course}).subscribe((data: any) => {
+    this.http.put(ModelsComponent.api + ModelsComponent.version + 'users/' + user, {coursesID: course}).subscribe((data: any) => {
       let message = data.message;
       console.log(message);
       this.getAllUsers();
-    }, (error: any) => {console.log(error);});
+    }, (error: any) => {console.log(error); });
 
   }
 
   // Get all users from the API
   getAllUsers() {
-    this.http.get(ModelsComponent.api + ModelsComponent.version + 'users').subscribe((users : any[] )=> {
+    this.http.get(ModelsComponent.api + ModelsComponent.version + 'users').subscribe((users: any[]) => {
       console.log(users);
       this.users = users;
-    }, (error: any) => {console.log(error);});
+    }, (error: any) => {console.log(error); });
   }
 
   // Get all users from the API
   getAllCourses() {
-    this.http.get(ModelsComponent.api + ModelsComponent.version + 'courses').subscribe((courses : any[] )=> {
+    this.http.get(ModelsComponent.api + ModelsComponent.version + 'courses').subscribe((courses: any[]) => {
       console.log(courses);
       this.courses = courses;
-    }, (error: any) => {console.log(error);});
+    }, (error: any) => {console.log(error); });
   }
 }

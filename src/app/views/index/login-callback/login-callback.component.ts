@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../../globals/helpers/http.service';
-import { User } from "../../../globals/models/models.component";
+import { User } from '../../../globals/models/models.component';
 
 @Component({
   selector: 'app-login-callback',
@@ -13,18 +13,17 @@ export class LoginCallbackComponent implements OnInit {
   constructor(private _httpService: HttpService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-  	let password = sessionStorage.getItem('pass');
-    sessionStorage.removeItem('pass');
-      //console.log(this.route.snapshot.params.code);
-      //console.log(this.route.snapshot.paramMap.get('code'));
-    //this.route.snapshot.params.code
+    const password = localStorage.getItem('pass');
+    localStorage.removeItem('pass');
+      // console.log(this.route.snapshot.params.code);
+      // console.log(this.route.snapshot.paramMap.get('code'));
+    // this.route.snapshot.params.code
     this.route.queryParamMap.subscribe((p: any) => {
       // console.log(p.params);
       this._httpService.callback(p.params.code, password).subscribe((data: User) => { // p.params.code
-        sessionStorage.setItem('token', data.token); //JSON.parse(atob(data.token.split('.')[1]))
-        let auth = Number(data.authlvl);
-        if (auth >= 127) {
-          this.router.navigate(['professor']);
+        const auth = Number(data.authlvl);
+        if (auth === 127) {
+          this.router.navigate(['mockcourses']);
         } else if (auth >= 63) {
           this.router.navigate(['professor']);
         } else if (auth >= 31) {
@@ -32,8 +31,8 @@ export class LoginCallbackComponent implements OnInit {
         } else if (auth >= 1) {
           this.router.navigate(['student']);
         }
-      }, (error: any) => {console.log(error);});
-    },err=>{console.log(err)});
+      }, (error: any) => {console.log(error); });
+    }, err => {console.log(err); });
   }
 
 }

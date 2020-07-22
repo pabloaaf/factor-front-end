@@ -6,8 +6,11 @@ import { Component } from '@angular/core';
 })
 export class ModelsComponent {
 
-  static version = '/api/'; //future
-  static api = 'http://192.168.1.132'; // s ToDo
+  //static version = '/api/'; // future
+  static version = '/'; // future
+  //static api = 'http://192.168.1.132'; // s ToDo
+  static api = 'http://192.168.1.125:3000'; // s ToDo
+
   static staticsURL = 'assets/';
   static languages = [
     { code: 'en', label: 'English', img: 'english'},
@@ -18,7 +21,7 @@ export class ModelsComponent {
   constructor() { }
 
   logout() {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
   }
 }
 
@@ -33,7 +36,7 @@ export class Error {
 }
 
 export class User {
-  _id: number;
+  _id: string;
   token: string;
   email: string;
   family_name: string;
@@ -43,13 +46,14 @@ export class User {
   verified_email: boolean;
   coursesID: string[];
   courses: Course[];
-  authlvl:number;
+  authlvl: number;
 
 
   constructor() {
     this.picture = "";
-    this._id = 0;
+    this._id = "";
     this.courses = [];
+    this.authlvl = 0;
   }
 }
 

@@ -1,3 +1,20 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="/mockcourses/#">
+    <img class="iit-logo" alt="Illinois Institute of Technology Logo" src="./assets/IIT_Logo_stack_186_blk_white.svg" width="250" height="50">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbar">
+    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link" (click)="logout()" aria-expanded="true">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <div class="container">
     <h1 i18n>Create course!</h1>
     <form [formGroup]="form">
